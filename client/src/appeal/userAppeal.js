@@ -4,6 +4,7 @@ export default class userAppeal{
     constructor() {
         this._isAuth = false
         this._user = {}
+        this._role = ''
         makeAutoObservable(this);
     }
 
@@ -22,6 +23,15 @@ export default class userAppeal{
 
     setUser(user) {
         this._user = user;
+    }
+
+
+    get role() {
+        return this._role;
+    }
+
+    setRole(role) {
+        this._role = role;
     }
 }
 

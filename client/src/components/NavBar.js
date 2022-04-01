@@ -16,17 +16,31 @@ const NavBar = observer(() => {
     }
 
     return (
-
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <NavLink to={MAIN_ROUTE}>ФЗСН</NavLink>
                     {user.isAuth ?
-                        <Nav className='ml-auto' style={{color: 'white'}}>
+                        user.role == "ADMIN"?
+                            <Nav className='ml-auto' style={{color: 'white'}}>
+                                <Button variant={"outline-light"} onClick={()=> history.push(ADMIN_ROUTE)}>Админ панель </Button>
+                                <Button variant={"outline-light"} onClick={()=> logOut()}>Выйти</Button>
+                            </Nav>
+                            :
+                            user.role == "USER"?
+                                <Nav className='ml-auto' style={{color: 'white'}}>
+                                    <Button variant={"outline-light"} onClick={()=> history.push(ADMIN_ROUTE)}>Профиль </Button>
+                                    <Button variant={"outline-light"} onClick={()=> logOut()}>Выйти</Button>
+                                </Nav>
+                                :
+                                user.role == "EMPLOYEE"?
+                                    <Nav className='ml-auto' style={{color: 'white'}}>
 
-                            <Button variant={"outline-light"} onClick={()=> history.push(ADMIN_ROUTE)}>Админ панель </Button>
-                            <Button variant={"outline-light"} onClick={()=> logOut()}>Выйти</Button>
-                        </Nav>
-                        :
+                                        <Button variant={"outline-light"} onClick={()=> history.push(ADMIN_ROUTE)}>Панель работника</Button>
+                                        <Button variant={"outline-light"} onClick={()=> logOut()}>Выйти</Button>
+                                    </Nav>
+                                    :
+                                    null
+                    :
                         <Nav className='ml-auto'>
                             <Button  variant={"outline-light"} onClick={() => history.push(LOGIN_ROUTE)}>Авторизация</Button>
                         </Nav>
