@@ -1,0 +1,9 @@
+server/node_modules/
+server/package-lock.json
+server/package.json
+server/static/
+.idea/
+.vscode/
+client/node_modules/
+client/package-lock.json
+client/package.json
