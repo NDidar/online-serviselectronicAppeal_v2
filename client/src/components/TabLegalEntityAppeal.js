@@ -1,11 +1,12 @@
 import React from 'react';
+import {observer} from "mobx-react-lite";
 import {Container, Form} from "react-bootstrap";
 
-const LegalEntityAppeal = () => {
+const TabLegalEntityAppeal = observer(() => {
     return (
         <Container>
             <Form className='d-flex flex-column'>
-                DropdownOrganization/>
+
                 <Form.Control
                     placeholder='Введите вашу фамилию'
                     className='mt-3'
@@ -46,6 +47,6 @@ const LegalEntityAppeal = () => {
             </Form>
         </Container>
     );
-};
+});
 
-export default LegalEntityAppeal;
+export default TabLegalEntityAppeal;
