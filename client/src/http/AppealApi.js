@@ -1,8 +1,8 @@
 import {$authHost, $host} from "./index";
 
 //Organizations
-export const createOrganization = async (organization) => {
-    const {data} = await $host.post('api/organization', organization)
+export const createOrganization = async (organization_name) => {
+    const {data} = await $authHost.post('api/organization', organization_name)
     return data
 }
 
@@ -11,15 +11,36 @@ export const fetchOrganizations = async () => {
     return data
 }
 
+export const updateOrganization = async (organization_name, id) => {
+    const {data} = await $authHost.put('api/organization/' + id, organization_name)
+    return data
+}
+
+export const deleteOrganization = async (id) => {
+    const {data} = await $authHost.delete('api/organization/' + id)
+    console.log(id)
+    return data
+}
 
 //departments
 export const creatDepartment = async (department) => {
-    const {data} = await $host.post('api/department', department)
+    const {data} = await $authHost.post('api/department', department)
     return data
 }
 
 export const fetchDepartments = async () => {
     const {data} = await $host.get('api/department')
+    return data
+}
+
+export const updateDepartment = async (department, id) => {
+    const {data} = await $authHost.put('api/department/' + id, department)
+    return data
+}
+
+export const deleteDepartment = async (id) => {
+    const {data} = await $authHost.delete('api/department/' + id)
+    console.log(id)
     return data
 }
 

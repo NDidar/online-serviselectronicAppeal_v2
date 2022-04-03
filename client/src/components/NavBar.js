@@ -13,6 +13,7 @@ const NavBar = observer(() => {
         user.setUser({})
         user.setIsAuth(false)
         localStorage.setItem('token', '')
+        history.push(MAIN_ROUTE)
     }
 
     return (

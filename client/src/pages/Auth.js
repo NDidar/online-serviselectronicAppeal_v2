@@ -46,6 +46,7 @@ const Auth = observer(() => {
             }
             user.setUser(user);
             user.setIsAuth(true);
+            
             user.setRole(data.role)
             history.push(MAIN_ROUTE)
         } catch (e) {

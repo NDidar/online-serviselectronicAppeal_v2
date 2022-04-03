@@ -19,16 +19,16 @@ class organizationAddressController {
     }
 
     async update(req, res){
-        // try {
-        //     const {id} = req.params
-        //     const {name} = req.body
-        //     const updateType = await Type.update({name},{where:{id}})
-        //     console.log(id)
-        //     console.log(name)
-        //     return res.json("Update")
-        // }catch (e) {
-        //     console.error(e.message)
-        // }
+        try {
+            const {id} = req.params
+            const {organization_name} = req.body
+            const updateOrganization_name= await OrganizationAddress.update({organization_name},{where:{id}})
+            console.log(id)
+            console.log(organization_name)
+            return res.json("Update")
+        }catch (e) {
+            console.error(e.message)
+        }
     }
 
     async delete(req, res, next){
