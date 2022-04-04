@@ -1,7 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {User} = require('../models/models')
+const {User, OrganizationAddress} = require('../models/models')
 
 const generateJwt = (id, email, role) => {
     return jwt.sign(
@@ -58,6 +58,17 @@ class UserController {
     }
 
 
+    async getAllEmployees(req, res,next) {
+        try {
+            const {role}= req.query
+            console.log(role)
+            const employees = await User.findAll({where: {role}})
+            return res.json(employees)
+        } catch (e) {
+            console.error(e.message)
+        }
+    }
+
     async getUser(req, res) {
         try {
             let id = req.query.id
@@ -79,6 +90,16 @@ class UserController {
             console.error(e.message)
         }
     }
+
+    async delete(req, res, next){
+        const id = req.params.id
+        const deleteUser = await User.destroy({where: {id}})
+        if (!deleteUser) {
+            return next(ApiError.forbidden("Не найден пользователь"))
+        }
+        return res.json("Удалено!")
+    }
+
 }
 
 module.exports = new UserController()

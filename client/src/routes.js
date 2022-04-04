@@ -6,7 +6,11 @@ import {
     LOGIN_ROUTE,
     MAIN_ROUTE,
     REGISTRATION_ROUTE,
-    CRUD_ORGANIZATION_ROUTE, CRUD_DEPARTMENT_ROUTE, REGISTRATION_EMPLOYEE_ROUTE
+    CRUD_ORGANIZATION_ROUTE,
+    CRUD_DEPARTMENT_ROUTE,
+    REGISTRATION_EMPLOYEE_ROUTE,
+    CRUD_EMPLOYEE_ROUTE,
+    EMPLOYEE_Profile_ROUTE, EMPLOYEE_PROFILE_ROUTE
 } from "./utils/Consts";
 import Auth from "./pages/Auth";
 import MainPage from "./pages/MainPage";
@@ -15,6 +19,8 @@ import EmployeePage from "./pages/employeePages/EmployeePage";
 import CRUDOrganization from "./pages/adminPages/CRUDOrganization";
 import CRUDDepartment from "./pages/adminPages/CRUDDepartment";
 import RegistrationNewEmployee from "./pages/adminPages/RegistrationNewEmployee";
+import CRUDEmployee from "./pages/adminPages/CRUDEmployee";
+import EmployeeProfile from "./components/CRUD/employeeCRUD/EmployeeProfile";
 
 export const adminRoutes = [
     {
@@ -32,6 +38,14 @@ export const adminRoutes = [
     {
         path: REGISTRATION_EMPLOYEE_ROUTE,
         Component: RegistrationNewEmployee
+    },
+    {
+        path: CRUD_EMPLOYEE_ROUTE,
+        Component: CRUDEmployee
+    },
+    {
+        path: EMPLOYEE_PROFILE_ROUTE + '/:id',
+        Component: EmployeeProfile
     }
 ]
 

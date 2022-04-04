@@ -1,11 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {Button, Card, Container, Form} from "react-bootstrap";
-import {IconButton, TextField} from "@mui/material";
+import {Alert, IconButton, Snackbar, TextField} from "@mui/material";
 import * as PropTypes from "prop-types";
 import {Context} from "../../index";
 import {useHistory, useLocation} from "react-router-dom";
-import {LOGIN_ROUTE} from "../../utils/Consts";
+import {CRUD_EMPLOYEE_ROUTE, LOGIN_ROUTE} from "../../utils/Consts";
 import {registration} from "../../http/UserApi";
 
 function CloseIcon(props) {
@@ -102,6 +102,9 @@ const RegistrationNewEmployee = observer(() => {
     const click = async () => {
         try {
             let data = await registration(email, password, 'EMPLOYEE')
+            if(data){
+                history.push(CRUD_EMPLOYEE_ROUTE)
+            }
         } catch (e) {
             setErrorStatus(e.response.data.message)
             console.log(e.response.data.message)
@@ -115,12 +118,12 @@ const RegistrationNewEmployee = observer(() => {
             style={{height: window.innerHeight - 54}}
         >
             <Card className='p-5' style={{width: 600}}>
-                <h2 className='m-auto'>Регистрация сотрудника</h2>
+                <h2 className='m-auto'>Регистрация оператора</h2>
                 {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
                 <Form className='d-flex flex-column'>
                     <TextField
                         size='small'
-                        label='Введите ваш email...'
+                        label='Введите email оператора...'
                         variant="outlined"
                         id="outlined-basic"
                         onBlur={e => blurHandler(e)}
@@ -132,7 +135,7 @@ const RegistrationNewEmployee = observer(() => {
                     {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{[passwordError]}</div>}
                     <TextField
                         size='small'
-                        label='Введите ваш пароль...'
+                        label='Введите пароль для оператора...'
                         id="outlined-basic"
                         variant="outlined"
                         onBlur={e => blurHandler(e)}
@@ -151,6 +154,17 @@ const RegistrationNewEmployee = observer(() => {
                     </Button>
                 </Form>
             </Card>
+            <Snackbar
+                anchorOrigin={{horizontal: 'center', vertical: 'top'}}
+                open={open}
+                autoHideDuration={3000}
+                onClose={handleClose}
+                action={action}
+            >
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    {errorStatus}
+                </Alert>
+            </Snackbar>
         </Container>
     );
 });

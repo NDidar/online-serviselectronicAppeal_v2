@@ -5,6 +5,7 @@ export default class userAppeal{
         this._isAuth = false
         this._user = {}
         this._role = ''
+        this._employees = []
         makeAutoObservable(this);
     }
 
@@ -32,6 +33,15 @@ export default class userAppeal{
 
     setRole(role) {
         this._role = role;
+    }
+
+
+    get employees() {
+        return this._employees;
+    }
+
+    setEmployees(value) {
+        this._employees = value;
     }
 }
 

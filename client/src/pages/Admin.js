@@ -10,7 +10,7 @@ const Admin = observer(() => {
     const [chooseVisible, setChooseVisible] = useState(false)
     return (
         <Container className='d-flex flex-column'>
-            <Button variant={"outline-dark"} className='mt-3 p-2' onClick={() => setChooseVisible(true)}>Добавить сотрудника</Button>
+            <Button variant={"outline-dark"} className='mt-3 p-2' onClick={() => setChooseVisible(true)}>Настройки учета сотрудников</Button>
             <Button variant={"outline-dark"} className='mt-3 p-2' onClick={() => history.push(CRUD_ORGANIZATION_ROUTE)}>Работа с данными организации</Button>
             <Button variant={"outline-dark"} className='mt-3 p-2' onClick={() => history.push(CRUD_DEPARTMENT_ROUTE)}>Работа с данными деятельности</Button>
             <ChoosingEmployeeAction show={chooseVisible} onHide={() => setChooseVisible(false)}/>

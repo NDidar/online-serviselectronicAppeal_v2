@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Modal, Typography} from "@mui/material";
 import {useHistory} from "react-router-dom";
-import {REGISTRATION_EMPLOYEE_ROUTE} from "../../utils/Consts";
+import {CRUD_EMPLOYEE_ROUTE, REGISTRATION_EMPLOYEE_ROUTE} from "../../utils/Consts";
 import {Button} from "react-bootstrap";
 
 const ChoosingEmployeeAction = ({show, onHide}) => {
@@ -33,7 +33,7 @@ const ChoosingEmployeeAction = ({show, onHide}) => {
                     </Typography>
                     <Typography className='d-flex flex-column' id="modal-modal-description" sx={{ mt: 2 }}>
                         <Button className='mt-2 p-2' variant={"outline-dark"} onClick={() => history.push(REGISTRATION_EMPLOYEE_ROUTE)}>Добавить сотрудника</Button>
-                        <Button className='mt-2 p-2' variant={"outline-dark"}>Редактирование сотрудников</Button>
+                        <Button className='mt-2 p-2' variant={"outline-dark"} onClick={() => history.push(CRUD_EMPLOYEE_ROUTE)}>Редактирование сотрудников</Button>
                     </Typography>
                 </Box>
             </Modal>
