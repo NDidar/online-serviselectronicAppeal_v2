@@ -4,12 +4,14 @@ import {Button, Form, Row} from "react-bootstrap";
 import CreatAppeal from "../pages/userPages/creatAppeal";
 import {creatElectronicAppeal} from "../http/AppealApi";
 import {Context} from "../index";
+import {fetchUser} from "../http/UserApi";
 
 const TabNaturalAppeal = observer(() => {
     const {appeal} = useContext(Context)
     const {user} = useContext(Context)
 
     const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
     const [surname, setSurname] = useState('')
     const [home_address, setHome_address] = useState('')
     const [phone_number, setPhone_number] = useState('')
@@ -18,6 +20,17 @@ const TabNaturalAppeal = observer(() => {
     const [file, setFile] = useState(null)
     const [organization, setOrganization] = useState(null)
     const [department, setDepartment] = useState(null)
+
+    useEffect(()=>{
+        fetchUser(user.userId).then(data =>{
+
+            setName(data[0].name)
+            setSurname(data[0].surname)
+            setHome_address(data[0].home_address)
+            setPhone_number(data[0].phone_number)
+            setEmail(data[0].email)
+        })
+    },[])
 
     const selectImg = e =>{
         setImg(e.target.files[0])
@@ -53,35 +66,35 @@ const TabNaturalAppeal = observer(() => {
                     placeholder='Введите ваше имя'
                     className='mt-3'
                     style={{width: 300}}
-                    value={name}
+                    value={name? name : ''}
                     onChange={e => setName(e.target.value)}
                 />
                 <Form.Control
                     placeholder='Введите вашу фамилию'
                     className='mt-3 ml-2'
                     style={{width: 300}}
-                    value={surname}
+                    value={surname? surname:''}
                     onChange={e => setSurname(e.target.value)}
                 />
             </Row>
             <Form.Control
                 placeholder='Адрес (адрес места жительства (места пребывания))'
                 className='mt-3'
-                value={home_address}
+                value={home_address? home_address : ''}
                 onChange={e => setHome_address(e.target.value)}
             />
             <Form.Control
                 placeholder='E-mail (адрес электронной почты заявителя)'
                 className='mt-3'
-                value={phone_number}
-                onChange={e => setPhone_number(e.target.value)}
+                value={email? email : ''}
+                onChange={e => setEmail(e.target.value)}
             />
             <Form.Control
                 placeholder='Суть обращения'
                 className='mt-3'
                 as="textarea"
                 rows={3}
-                value={essence}
+                value={essence? essence : ''}
                 onChange={e => setEssence(e.target.value)}
             />
             <br/>

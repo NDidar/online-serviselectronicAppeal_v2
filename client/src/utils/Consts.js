@@ -7,6 +7,7 @@ export const MAIN_ROUTE = '/'
 
 //user
 export const CREATE_APPEAL_ROUTE = '/createappeal'
+export const PROFILE_ROUTE = '/profile'
 
 //employee
 export const EMPLOYEE_ROUTE = '/employeePage'

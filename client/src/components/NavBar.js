@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {Context} from "../index";
 import {NavLink, useHistory} from "react-router-dom";
-import {ADMIN_ROUTE, EMPLOYEE_ROUTE, LOGIN_ROUTE, MAIN_ROUTE} from "../utils/Consts";
+import {ADMIN_ROUTE, EMPLOYEE_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, PROFILE_ROUTE} from "../utils/Consts";
 import {observer} from "mobx-react-lite";
 
 const NavBar = observer(() => {
@@ -29,7 +29,7 @@ const NavBar = observer(() => {
                             :
                             user.role == "USER"?
                                 <Nav className='ml-auto' style={{color: 'white'}}>
-                                    <Button variant={"outline-light"} onClick={()=> history.push(ADMIN_ROUTE)}>Профиль </Button>
+                                    <Button variant={"outline-light"} onClick={()=> history.push(PROFILE_ROUTE)}>Профиль </Button>
                                     <Button className='ml-2' variant={"outline-light"} onClick={()=> logOut()}>Выйти</Button>
                                 </Nav>
                                 :

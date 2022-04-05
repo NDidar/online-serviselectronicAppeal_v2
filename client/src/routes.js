@@ -10,7 +10,7 @@ import {
     CRUD_DEPARTMENT_ROUTE,
     REGISTRATION_EMPLOYEE_ROUTE,
     CRUD_EMPLOYEE_ROUTE,
-    EMPLOYEE_Profile_ROUTE, EMPLOYEE_PROFILE_ROUTE
+    EMPLOYEE_Profile_ROUTE, EMPLOYEE_PROFILE_ROUTE, PROFILE_ROUTE
 } from "./utils/Consts";
 import Auth from "./pages/Auth";
 import MainPage from "./pages/MainPage";
@@ -21,6 +21,7 @@ import CRUDDepartment from "./pages/adminPages/CRUDDepartment";
 import RegistrationNewEmployee from "./pages/adminPages/RegistrationNewEmployee";
 import CRUDEmployee from "./pages/adminPages/CRUDEmployee";
 import EmployeeProfile from "./components/CRUD/employeeCRUD/EmployeeProfile";
+import Profile from "./pages/userPages/Profile";
 
 export const adminRoutes = [
     {
@@ -60,6 +61,10 @@ export const userRoutes = [
     {
         path: CREATE_APPEAL_ROUTE,
         Component: creatAppeal
+    },
+    {
+        path: PROFILE_ROUTE,
+        Component: Profile
     }
 ]
 

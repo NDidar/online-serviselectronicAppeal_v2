@@ -83,8 +83,8 @@ class UserController {
 
     async addInfoBio(req, res) {
         try{
-            const {name, surname, delivery_address, phone_number, id} = req.body
-            const updateBIO = await User.update({name, surname, delivery_address, phone_number}, {where: {id}});
+            const {name, surname, home_address, phone_number, id} = req.body
+            const updateBIO = await User.update({name, surname, home_address, phone_number}, {where: {id}});
             return res.json(updateBIO)
         } catch (e) {
             console.error(e.message)
