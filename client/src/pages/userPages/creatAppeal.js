@@ -1,5 +1,5 @@
 // import React from 'react';
-// import {AppBar, Box, Tab, Tabs, Typography, useTheme} from "@mui/material";
+// import {AppBar, Box, Tab, tabs, Typography, useTheme} from "@mui/material";
 // import PropTypes from 'prop-types';
 // import SwipeableViews from "react-swipeable-views";
 // import {Container, Form, Row} from "react-bootstrap";
@@ -59,7 +59,7 @@
 //        <Container className='d-flex justify-content-between'>
 //            <Box  sx={{ bgcolor: 'background.dark', width: 1810 }}>
 //                <AppBar position="static">
-//                    <Tabs
+//                    <tabs
 //                        value={value}
 //                        onChange={handleChange}
 //                        indicatorColor="secondary"
@@ -70,7 +70,7 @@
 //                        <Tab label="Электронные обращения для граждан, в том числе индивидуальных предпринимателей" {...a11yProps(0)} />
 //                        <Tab label="Электронные обращения для юридических лиц" {...a11yProps(1)} />
 //
-//                    </Tabs>
+//                    </tabs>
 //                </AppBar>
 //                <SwipeableViews
 //                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}

@@ -45,7 +45,7 @@ export const deleteDepartment = async (id) => {
 }
 
 //appeal
-export const creatAppeal = async (appeal) => {
+export const creatElectronicAppeal = async (appeal) => {
     const {data} = await $host.post('api/appeal', appeal)
     return data
 }
@@ -54,7 +54,6 @@ export const fetchAppeals = async () => {
     const {data} = await $host.get('api/appeal')
     return data
 }
-
 
 export const fetchOneAppeal = async (id) => {
     const {data} = await $host.get('api/appeal/' + id)

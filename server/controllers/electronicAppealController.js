@@ -6,14 +6,14 @@ const path = require('path')
 class electronicAppealController {
     async create(req, res, next) {
         try {
-            let {name, surname, home_address,phone_number,content,userID, organizationAddressId, departmentAppealId, info} = req.body;
+            let {name, surname, home_address,phone_number,content,userId, organizationAddressId, departmentAppealId, info} = req.body;
             let {img, file} = req.files;
             const imgName = uuid.v4() + ".jpg";
             const fileName = uuid.v4() + ".doc";
             img.mv(path.resolve(__dirname, '..','static', imgName))
             file.mv(path.resolve(__dirname, '..','static', fileName))
 
-            const Appeal = await ElectronicAppeal.create({name, surname, home_address,phone_number,content,userID, organizationAddressId, departmentAppealId, img: imgName, file: fileName})
+            const Appeal = await ElectronicAppeal.create({name, surname, home_address,phone_number,content,userId, organizationAddressId, departmentAppealId, img: imgName, file: fileName})
             
             if (info) {
                 info = JSON.parse(info)

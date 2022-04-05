@@ -51,10 +51,6 @@ export const adminRoutes = [
 
 export const employeeRoutes = [
     {
-        path: ADMIN_ROUTE,
-        Component: Admin
-    },
-    {
         path: EMPLOYEE_ROUTE,
         Component: EmployeePage
     }

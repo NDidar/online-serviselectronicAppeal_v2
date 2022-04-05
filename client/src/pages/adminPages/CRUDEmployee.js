@@ -1,12 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {Col, Container, Row} from "react-bootstrap";
 import EmployeeList from "../../components/CRUD/employeeCRUD/EmployeeList";
 import {fetchEmployees} from "../../http/UserApi";
-import {Context} from "../../index";
 
 const CrudEmployee = observer(() => {
-    const {user} = useContext(Context)
+
     const [employee, setEmployee] = useState([])
 
     useEffect(() => {

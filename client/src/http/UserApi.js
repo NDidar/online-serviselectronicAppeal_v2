@@ -50,4 +50,3 @@ export const deleteUser = async (id) => {
     const {data} = await $authHost.delete('api/user/' + id)
     return data
 }
-
