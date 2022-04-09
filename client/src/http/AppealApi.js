@@ -50,6 +50,11 @@ export const creatElectronicAppeal = async (appeal) => {
     return data
 }
 
+export const creatLegApp = async (legAppeal) => {
+    const {data} = await $host.post('api/appeal', legAppeal)
+    return data
+}
+
 export const fetchAppeals = async () => {
     const {data} = await $host.get('api/appeal')
     return data

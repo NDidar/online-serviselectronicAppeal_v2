@@ -14,7 +14,7 @@ const User = sequelize.define('user',{
 
 const LegalEntity = sequelize.define('legal_entity',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.STRING}
+    nameLegal: {type: DataTypes.STRING}
 })
 
 const ElectronicAppeal = sequelize.define('electronic_appeal',{

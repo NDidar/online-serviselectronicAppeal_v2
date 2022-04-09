@@ -118,7 +118,7 @@ const CreatAppeal = observer(() => {
 
     return (
         <Container>
-            <Tabs className='mt-2' variant={'pills'} defaultActiveKey="home" id="uncontrolled-tab-example">
+            <Tabs className='mt-2' variant={'pills'} id="uncontrolled-tab-example">
                 <Tab eventKey="home" title="Электронные обращения для граждан, в том числе индивидуальных предпринимателей">
                     <DropdownMenu />
                     <TabNaturalAppeal />
