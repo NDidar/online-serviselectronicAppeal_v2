@@ -32,6 +32,7 @@ const viewNotActApp = observer(() => {
         })
     }, [appeal.page])
 
+
     const delAppeal = async (id) => {
         deleteAppeal(id).then()
         setViewNotActApp(viewNotActApp.filter(appeals => appeals.id !== id))

@@ -6,7 +6,7 @@ import Pages from "../../components/Pages";
 import {deleteAppeal, fetchAppeals} from "../../http/AppealApi";
 import {Context} from "../../index";
 import {useHistory} from "react-router-dom";
-import {APPEAL_ITEM_ROUTE, CREATE_APPEAL_ROUTE} from "../../utils/Consts";
+import {APPEAL_ITEM_ROUTE} from "../../utils/Consts";
 
 const ViewActApp = observer(() => {
     const [historyAppeal, setHistoryAppeal] = useState([]);
@@ -44,7 +44,6 @@ const ViewActApp = observer(() => {
 
     return (
         <Container>
-
                 <Container>
                     <Fragment>
                         <table className="table mt-5 text-center">
@@ -72,7 +71,6 @@ const ViewActApp = observer(() => {
                     </Fragment>
                     <Pages />
                 </Container>
-
         </Container>
     );
 });

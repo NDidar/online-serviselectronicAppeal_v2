@@ -88,7 +88,7 @@ export const userRoutes = [
         Component: viewNotActApp
     },
     {
-        path: APPEAL_ITEM_ROUTE+ '/:id',
+        path: APPEAL_ITEM_ROUTE + '/:id',
         Component: AppealItem
     }
 ]

@@ -64,7 +64,7 @@ class electronicAppealController {
             const appeal = await ElectronicAppeal.findOne(
                     {
                         where: {id},
-                        include: [{model: LegalEntity, as: 'info'}]
+                        include: [{all: true}]
                     },
                 )
             return res.json(appeal)
@@ -93,6 +93,15 @@ class electronicAppealController {
             return next(ApiError.badRequest("Не найден такой тип еды"))
         }
         return res.json("Удалено!")
+    }
+
+    async downloadFile(req,res){
+        try {
+
+        }catch (e) {
+            console.log(e)
+            return res.status(500).json({message: "Download error"})
+        }
     }
 
 }
