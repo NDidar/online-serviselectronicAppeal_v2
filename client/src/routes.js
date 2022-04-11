@@ -10,7 +10,12 @@ import {
     CRUD_DEPARTMENT_ROUTE,
     REGISTRATION_EMPLOYEE_ROUTE,
     CRUD_EMPLOYEE_ROUTE,
-    EMPLOYEE_Profile_ROUTE, EMPLOYEE_PROFILE_ROUTE, PROFILE_ROUTE
+    EMPLOYEE_Profile_ROUTE,
+    EMPLOYEE_PROFILE_ROUTE,
+    PROFILE_ROUTE,
+    HISTORY_APPEAL_USER_ROUTE,
+    ACTIVE_APPEAL_USER_ROUTE,
+    APPEAL_ITEM_ROUTE, NOT_ACTIVE_APPEAL_USER_ROUTE
 } from "./utils/Consts";
 import Auth from "./pages/Auth";
 import MainPage from "./pages/MainPage";
@@ -22,6 +27,10 @@ import RegistrationNewEmployee from "./pages/adminPages/RegistrationNewEmployee"
 import CRUDEmployee from "./pages/adminPages/CRUDEmployee";
 import EmployeeProfile from "./components/CRUD/employeeCRUD/EmployeeProfile";
 import Profile from "./pages/userPages/Profile";
+import viewHistory from "./pages/userPages/viewHistory";
+import viewActApp from "./pages/userPages/viewActApp";
+import AppealItem from "./components/AppealItem";
+import viewNotActApp from "./pages/userPages/viewNotActApp";
 
 export const adminRoutes = [
     {
@@ -65,6 +74,22 @@ export const userRoutes = [
     {
         path: PROFILE_ROUTE,
         Component: Profile
+    },
+    {
+        path: HISTORY_APPEAL_USER_ROUTE,
+        Component: viewHistory
+    },
+    {
+        path: ACTIVE_APPEAL_USER_ROUTE,
+        Component: viewActApp
+    },
+    {
+        path: NOT_ACTIVE_APPEAL_USER_ROUTE,
+        Component: viewNotActApp
+    },
+    {
+        path: APPEAL_ITEM_ROUTE+ '/:id',
+        Component: AppealItem
     }
 ]
 

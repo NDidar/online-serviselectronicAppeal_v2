@@ -55,12 +55,21 @@ export const creatLegApp = async (legAppeal) => {
     return data
 }
 
-export const fetchAppeals = async () => {
-    const {data} = await $host.get('api/appeal')
+export const fetchAppeals = async (organizationAddressId,departmentAppealId, status,limit, page, userId) => {
+    const {data} = await $host.get('api/appeal', {params: {
+            organizationAddressId, departmentAppealId,
+            status, limit, page, userId
+        }})
     return data
 }
 
 export const fetchOneAppeal = async (id) => {
     const {data} = await $host.get('api/appeal/' + id)
+    return data
+}
+
+export const deleteAppeal = async (id) => {
+    const {data} = await $authHost.delete('api/appeal/' + id)
+    console.log(id)
     return data
 }

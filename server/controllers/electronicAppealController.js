@@ -1,4 +1,4 @@
-const {ElectronicAppeal, LegalEntity} = require('../models/models')
+const {ElectronicAppeal, LegalEntity, OrganizationAddress, DepartmentOfAppeal} = require('../models/models')
 const ApiError = require('../error/ApiError');
 const uuid = require('uuid')
 const path = require('path')
@@ -29,13 +29,17 @@ class electronicAppealController {
 
     async getAll(req, res, next) {
         try {
-            let {organizationAddressId, departmentAppealId, status, limit, page} = req.query
-            console.log(limit);
+            let {organizationAddressId, departmentAppealId, status, limit, page, userId} = req.query
+            console.log(userId);
             console.log(page);
             limit = limit || 9;
             page = page || 1;
             let offset = page * limit - limit;
             let appeals;
+            if(userId){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {userId, status}, limit ,offset, include: {all: true}})
+                return res.json(appeals)
+            }
             if (!organizationAddressId && !departmentAppealId){
                 appeals = await ElectronicAppeal.findAndCountAll({where: {status}, limit ,offset})
             }
@@ -83,12 +87,12 @@ class electronicAppealController {
     }
 
     async delete(req, res, next){
-        // const id = req.params.id
-        // const deleteType = await Type.destroy({where: {id}})
-        // if (!deleteType) {
-        //     return next(ApiError.badRequest("Не найден такой тип еды"))
-        // }
-        // return res.json("Удалено!")
+        const id = req.params.id
+        const deleteAppeal = await ElectronicAppeal.destroy({where: {id}})
+        if (!deleteAppeal) {
+            return next(ApiError.badRequest("Не найден такой тип еды"))
+        }
+        return res.json("Удалено!")
     }
 
 }

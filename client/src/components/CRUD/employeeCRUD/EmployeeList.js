@@ -17,10 +17,7 @@ const EmployeeList = ({emp}) => {
                     </Row>
                     :
                     null
-
                 }
-
-
             </Card>
         </Col>
     );
