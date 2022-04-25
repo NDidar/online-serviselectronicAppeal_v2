@@ -31,8 +31,6 @@ const TabLegalEntityAppeal = observer(() => {
         })
     }, [])
 
-
-
     const selectImg = e =>{
         setImg(e.target.files[0])
     }

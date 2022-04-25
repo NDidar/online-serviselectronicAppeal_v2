@@ -33,25 +33,11 @@ const MainPage = observer( () => {
                                 variant={"outline-danger"}
                                 onClick={() => history.push(NOT_ACTIVE_APPEAL_USER_ROUTE)}
                             >
-                                Нерассмотренные обращении
-                            </Button>
-                            <Button
-                                style={{fontSize: 20, marginTop: 20}}
-                                variant={"outline-danger"}
-                                onClick={() => history.push(ACTIVE_APPEAL_USER_ROUTE)}
-                            >
-                                Активные обращении
-                            </Button>
-                            <Button
-                                style={{fontSize: 20, marginTop: 20}}
-                                variant={"outline-danger"}
-                                onClick={() => history.push(HISTORY_APPEAL_USER_ROUTE)}
-                            >
-                                История обращений
+                                Просмотр обращении
                             </Button>
                         </Row>
                         :
-                        user.role == ''?
+                        user.role == null?
                             <Row className='d-flex flex-column '>
                                 <Button
 

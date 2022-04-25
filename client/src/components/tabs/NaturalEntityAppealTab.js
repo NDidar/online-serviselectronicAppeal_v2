@@ -92,7 +92,7 @@ const NaturalEntityAppealTab = observer(() => {
                         <td>{getDateWithoutTime(appeal.createdAt)}</td>
                         <td>{appeal.organization_address?.organization_name}</td>
                         <td>{appeal.department_appeal?.department}</td>
-                        <td>{appeal.status == 'notreviewed'? 'Не рассмотрен' : appeal.status == 'inreviewed'? 'В процессе рассмотрении' : appeal.status == 'reviewed'? 'Рассмотрен' : null}</td>
+                        <td>{appeal.status == 'notreviewed'? 'Не рассмотрен' : appeal.status == 'viewed'? 'В процессе рассмотрении' : appeal.status == 'reviewed'? 'Рассмотрен' : null}</td>
                         <td><button className="btn btn-danger" onClick={() => delAppeal(appeal.id)}><RiDeleteBin6Line /></button></td>
                     </tr>
                 ))}

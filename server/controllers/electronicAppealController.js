@@ -31,9 +31,11 @@ class electronicAppealController {
             page = page || 1;
             let offset = page * limit - limit;
             let appeals;
-            if(userId){
+            if(userId && status){
                 appeals = await ElectronicAppeal.findAndCountAll({where: {userId, status}, limit ,offset, include: {all: true}})
-                return res.json(appeals)
+            }
+            if(userId && !status){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {userId}, limit ,offset, include: {all: true}})
             }
 
             if (!organizationAddressId && !departmentAppealId && !status && !statusLegal){

@@ -1,22 +1,26 @@
 import React, {Fragment, useContext, useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
-import {Button, Container, Row} from "react-bootstrap";
+import {Container, Dropdown} from "react-bootstrap";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import Pages from "../../components/Pages";
 import {deleteAppeal, fetchAppeals} from "../../http/AppealApi";
 import {Context} from "../../index";
 import {useHistory} from "react-router-dom";
-import {APPEAL_ITEM_ROUTE, CREATE_APPEAL_ROUTE} from "../../utils/Consts";
+import {APPEAL_ITEM_ROUTE} from "../../utils/Consts";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 const viewNotActApp = observer(() => {
     const [viewNotActApp, setViewNotActApp] = useState([]);
     const {user} = useContext(Context)
     const {appeal} = useContext(Context)
+    const [selectedStatus, setSelectedStatus] = useState(null)
+    const [selectedStatusData, setSelectedStatusData] = useState(null)
 
     const history = useHistory()
 
     useEffect(() => {
-        fetchAppeals(null, null, null, 'notreviewed',
+        fetchAppeals(null, null, null, null,
             2,1, user.userId).then(data => {
             appeal.setAppeals(data.rows)
             appeal.setTotalCount(data.count)
@@ -25,12 +29,12 @@ const viewNotActApp = observer(() => {
 
 
     useEffect(() => {
-        fetchAppeals(null, null,null, 'notreviewed',
-            2,appeal.page, user.userId).then(data => {
+        fetchAppeals(null, null,null, selectedStatusData,
+            9,appeal.page, user.userId).then(data => {
             appeal.setAppeals(data.rows)
             appeal.setTotalCount(data.count)
         })
-    }, [appeal.page])
+    }, [appeal.page, selectedStatusData])
 
 
     const delAppeal = async (id) => {
@@ -48,6 +52,29 @@ const viewNotActApp = observer(() => {
 
                 <Container>
                     <Fragment>
+                        <Dropdown className='mt-4'>
+                            <DropdownToggle>{selectedStatus || 'Выберите статус обращения'}</DropdownToggle>
+                            <DropdownMenu >
+                                <Dropdown.Item onClick={() => {
+                                    setSelectedStatus('Не рассмотрено')
+                                    setSelectedStatusData('notreviewed')
+                                }}>Не рассмотрено</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    setSelectedStatus('В процессе рассмотрении')
+                                    setSelectedStatusData('viewed')
+                                }}>В процессе рассмотрении</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    setSelectedStatus('Рассмотрен')
+                                    setSelectedStatusData('reviewed')
+                                }}>Рассмотрен</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    setSelectedStatus('Все обращений')
+                                    setSelectedStatusData(null)
+                                }}
+
+                                >Все обращений</Dropdown.Item>
+                            </DropdownMenu>
+                        </Dropdown>
                         <table className="table mt-5 text-center">
                             <thead>
                             <tr>
@@ -64,7 +91,7 @@ const viewNotActApp = observer(() => {
                                     <td>{getDateWithoutTime(appeal.createdAt)}</td>
                                     <td>{appeal.organization_address?.organization_name}</td>
                                     <td>{appeal.department_appeal?.department}</td>
-                                    <td>{appeal.status == 'notreviewed'? 'Не рассмотрен' : null}</td>
+                                    <td>{appeal.status == 'notreviewed'? 'Не рассмотрен' : appeal.status == 'viewed'? 'В процессе рассмотрений' : appeal.status == 'reviewed'? 'Рассмотрен' : null}</td>
                                     <td><button className="btn btn-danger" onClick={() => delAppeal(appeal.id)}><RiDeleteBin6Line /></button></td>
                                 </tr>
                             ))}

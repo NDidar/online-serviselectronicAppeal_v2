@@ -21,7 +21,7 @@ const AppealItem = observer(() => {
         try {
             console.log(status)
             updateStatus({status: status},id).then()
-            // window.location.reload()
+            window.location.reload()
         }catch (e) {
             console.error(e.message)
         }
