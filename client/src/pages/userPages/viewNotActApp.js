@@ -16,7 +16,7 @@ const viewNotActApp = observer(() => {
     const history = useHistory()
 
     useEffect(() => {
-        fetchAppeals(null, null, 'notreviewed',
+        fetchAppeals(null, null, null, 'notreviewed',
             2,1, user.userId).then(data => {
             appeal.setAppeals(data.rows)
             appeal.setTotalCount(data.count)
@@ -25,7 +25,7 @@ const viewNotActApp = observer(() => {
 
 
     useEffect(() => {
-        fetchAppeals(null, null, 'notreviewed',
+        fetchAppeals(null, null,null, 'notreviewed',
             2,appeal.page, user.userId).then(data => {
             appeal.setAppeals(data.rows)
             appeal.setTotalCount(data.count)

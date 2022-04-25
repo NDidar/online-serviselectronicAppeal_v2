@@ -43,6 +43,8 @@ const TabLegalEntityAppeal = observer(() => {
 
     const addLegalEntityAppeal = () => {
         const formData = new FormData()
+        formData.append('nameLegal', nameLegalEntity)
+        formData.append('statusLegal', 'true')
         formData.append('name', name)
         formData.append('surname', surname)
         formData.append('home_address', home_address)
@@ -53,7 +55,6 @@ const TabLegalEntityAppeal = observer(() => {
         formData.append('userId', user.userId)
         formData.append('organizationAddressId', appeal.selectedOrganization.id)
         formData.append('departmentAppealId', appeal.selectedDepartment.id)
-        formData.append('nameLegal', nameLegalEntity)
         creatElectronicAppeal(formData).then(data => console.log('all right'))
     }
 

@@ -15,6 +15,9 @@ export const APPEAL_ITEM_ROUTE = '/appealItem'
 
 //employee
 export const EMPLOYEE_ROUTE = '/employeePage'
+export const NATURAL_TAB_ROUTE = '/naturalTab'
+export const LEGAL_TAB_ROUTE = '/legalTab'
+export const ANON_TAB_ROUTE = '/AnonTab'
 
 //admin
 export const CRUD_ORGANIZATION_ROUTE = '/crudOrganization'

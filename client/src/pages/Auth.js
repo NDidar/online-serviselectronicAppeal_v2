@@ -7,12 +7,16 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import {Alert, IconButton, Snackbar, TextField} from "@mui/material";
 import * as PropTypes from "prop-types";
+import SvgSelectors from "../components/SvgSelectors/SvgSelectors";
 
 function CloseIcon(props) {
     return null;
 }
 
 CloseIcon.propTypes = {fontSize: PropTypes.string};
+
+
+
 const Auth = observer(() => {
     const {user} = useContext(Context)
     const location = useLocation();
@@ -26,8 +30,14 @@ const Auth = observer(() => {
     const [passwordError, setPasswordError] = useState('Пароль не может быть пустым')
     const [formValid, setFormValid] = useState(false)
     const [errorStatus, setErrorStatus] = useState('')
+    const [isHide, setIsHide] = useState(false);
 
-
+    const handleIsHide = () => {
+        setIsHide(isHide ? false : true)
+    }
+    const handleForm = (event) => {
+        event.preventDefault()
+    }
     useEffect(()=>{
         if (emailError || passwordError){
             setFormValid(false)
@@ -121,77 +131,83 @@ const Auth = observer(() => {
     );
 
     return (
-        <Container
-            className='d-flex justify-content-center align-items-center'
-            style={{height: window.innerHeight - 54}}
-        >
-            <Card className='p-5' style={{width: 600}}>
-                <h2 className='m-auto'>{isLogin? 'Авторизация' : 'Регистрация'}</h2>
-                <Form className='d-flex flex-column'>
-                    {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
-                    <TextField
-                        size='small'
-                        label='Введите ваш email...'
-                        variant="outlined"
-                        id="outlined-basic"
-                        onBlur={e => blurHandler(e)}
-                        name='email'
-                        className="mt-3"
-                        value={email}
-                        onChange={e => emailHandler(e)}
-                    />
-                    {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{[passwordError]}</div>}
-                    <TextField
-                        size='small'
-                        label='Введите ваш пароль...'
-                        id="outlined-basic"
-                        variant="outlined"
-                        onBlur={e => blurHandler(e)}
-                        name='password'
-                        className="mt-3"
-                        value={password}
-                        onChange={e => passwordHandler(e)}
-                        type="password"
-                    />
-                    <Row className='d-flex justify-content-between mt-3 pl-3 pr-3'>
-                        {isLogin?
-                            <div>
-                                Нет аккаунта?
-                                <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся</NavLink>
-                            </div>
-                            :
-                            <div>
-                                Есть аккаунта?
-                                <NavLink to={LOGIN_ROUTE}>Войдите</NavLink>
-                            </div>
-                        }
-
-                        <Button
-                            className='align-self-end'
-                            variant={"outline-success"}
-                            onClick={click}
-                        >
-                            {isLogin ?
-                                'Войти'
-                                :
-                                'Регистрация'
-                            }
-                        < /Button>
-                    </Row>
-                </Form>
-            </Card>
-            <Snackbar
-                anchorOrigin={{horizontal: 'center', vertical: 'top'}}
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                action={action}
+        <div style={{background: "gray"}}>
+            <Container
+                className='d-flex justify-content-center align-items-center'
+                style={{height: window.innerHeight - 54}}
             >
-                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                    {errorStatus}
-                </Alert>
-            </Snackbar>
-        </Container>
+                <Card className='p-5' style={{width: 600, borderRadius: 20, linearGradient: 'red'}}>
+                    <h2 className='m-auto'>{isLogin? 'Авторизация' : 'Регистрация'}</h2>
+                    <Form className='d-flex flex-column' onSubmit={handleForm}>
+                        {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
+                        <TextField
+                            size='small'
+                            label='Введите ваш email...'
+                            variant="outlined"
+                            id="outlined-basic"
+                            onBlur={e => blurHandler(e)}
+                            name='email'
+                            className="mt-3"
+                            value={email}
+                            onChange={e => emailHandler(e)}
+                        />
+                        {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{[passwordError]}</div>}
+                        <div className='d-flex align-items-center justify-content-center position-relative'>
+                            <TextField
+                            size='small'
+                            label='Введите ваш пароль...'
+                            id="outlined-basic"
+                            variant="outlined"
+                            onBlur={e => blurHandler(e)}
+                            name='password'
+                            className="mt-3"
+                            value={password}
+                            onChange={e => passwordHandler(e)}
+                            type={isHide ? "text": "password"}
+                            style={{width: '100%'}}
+                        />
+                            <div onClick={handleIsHide} className='isHide mt-3 position-absolute' style={{width: 30, right: 5, cursor: "pointer"}}><SvgSelectors id={isHide ? "show" : "hide"}/></div></div>
+                        <Row className='d-flex justify-content-between mt-3 pl-3 pr-3'>
+                            {isLogin?
+                                <div>
+                                    Нет аккаунта?
+                                    <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся</NavLink>
+                                </div>
+                                :
+                                <div>
+                                    Есть аккаунта?
+                                    <NavLink to={LOGIN_ROUTE}>Войдите</NavLink>
+                                </div>
+                            }
+
+                            <Button
+                                className='align-self-end'
+                                variant={"outline-success"}
+                                onClick={click}
+                            >
+                                {isLogin ?
+                                    'Войти'
+                                    :
+                                    'Регистрация'
+                                }
+                            < /Button>
+                        </Row>
+                    </Form>
+                </Card>
+                <Snackbar
+                    anchorOrigin={{horizontal: 'center', vertical: 'top'}}
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    action={action}
+                >
+                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        {errorStatus}
+                    </Alert>
+                </Snackbar>
+            </Container>
+        </div>
+
     );
 });
 

@@ -6,32 +6,27 @@ const path = require('path')
 class electronicAppealController {
     async create(req, res, next) {
         try {
-            let {name, surname, home_address,phone_number,content,userId, organizationAddressId, departmentAppealId, nameLegal} = req.body;
+            let {nameLegal, statusLegal, name, surname, home_address,phone_number,content,userId, organizationAddressId, departmentAppealId} = req.body;
+            console.log(nameLegal)
             let {img, file} = req.files;
             const imgName = uuid.v4() + ".jpg";
             const fileName = uuid.v4() + ".doc";
             img.mv(path.resolve(__dirname, '..','static', imgName))
             file.mv(path.resolve(__dirname, '..','static', fileName))
 
-            const Appeal = await ElectronicAppeal.create({name, surname, home_address,phone_number,content,userId, organizationAddressId, departmentAppealId, img: imgName, file: fileName})
-            
-            if (nameLegal) {
-                    const infos = await LegalEntity.create({
-                        nameLegal: nameLegal,
-                        electronicAppealId: Appeal.id
-                    })
-            }
+            const Appeal = await ElectronicAppeal.create({nameLegal,statusLegal, name, surname, home_address,phone_number,content,userId, organizationAddressId, departmentAppealId, img: imgName, file: fileName})
             return res.json(Appeal)
         }catch (e) {
             next(ApiError.badRequest("e.message"))
         }
     }
 
+
     async getAll(req, res, next) {
         try {
-            let {organizationAddressId, departmentAppealId, status, limit, page, userId} = req.query
+            let {statusLegal, organizationAddressId, departmentAppealId, status, limit, page, userId} = req.query
             console.log(userId);
-            console.log(page);
+            console.log(status);
             limit = limit || 9;
             page = page || 1;
             let offset = page * limit - limit;
@@ -40,18 +35,63 @@ class electronicAppealController {
                 appeals = await ElectronicAppeal.findAndCountAll({where: {userId, status}, limit ,offset, include: {all: true}})
                 return res.json(appeals)
             }
-            if (!organizationAddressId && !departmentAppealId){
-                appeals = await ElectronicAppeal.findAndCountAll({where: {status}, limit ,offset})
+
+            if (!organizationAddressId && !departmentAppealId && !status && !statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({ limit ,offset, include: {all: true}})
             }
-            if (organizationAddressId && !departmentAppealId){
-                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId,status}, limit ,offset})
+            if (organizationAddressId && departmentAppealId && status && statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId,status,statusLegal}, limit ,offset, include: {all: true}})
             }
-            if (!organizationAddressId && departmentAppealId ){
-                appeals = await ElectronicAppeal.findAndCountAll({where: {departmentAppealId, status}, limit ,offset})
+            /////
+            if (organizationAddressId && !departmentAppealId && !status && !statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId}, limit ,offset, include: {all: true}})
             }
-            if (organizationAddressId && departmentAppealId ){
-                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId,status}, limit ,offset})
+            if (!organizationAddressId && departmentAppealId && !status && !statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {departmentAppealId}, limit ,offset, include: {all: true}})
             }
+            if (!organizationAddressId && !departmentAppealId && status && !statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {status}, limit ,offset, include: {all: true}})
+            }
+            if (!organizationAddressId && !departmentAppealId && !status && statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {statusLegal}, limit ,offset, include: {all: true}})
+            }
+
+
+            //
+            if (!organizationAddressId && departmentAppealId && status && statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {departmentAppealId, status,statusLegal}, limit ,offset, include: {all: true}})
+            }
+            if (organizationAddressId && !departmentAppealId && status && statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId,status, statusLegal}, limit ,offset, include: {all: true}})
+            }
+            if (organizationAddressId && departmentAppealId && !status && statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId, statusLegal}, limit ,offset, include: {all: true}})
+            }
+            if (organizationAddressId && departmentAppealId && status && !statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId, status}, limit ,offset, include: {all: true}})
+            }
+
+            ///
+            if (organizationAddressId && !departmentAppealId && status && !statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId,status}, limit ,offset, include: {all: true}})
+            }
+            if (organizationAddressId && !departmentAppealId && !status && statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId, statusLegal}, limit ,offset, include: {all: true}})
+            }
+            if (organizationAddressId && departmentAppealId && !status && !statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId}, limit ,offset, include: {all: true}})
+            }
+            ///
+            if (!organizationAddressId && departmentAppealId && status && !statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {departmentAppealId, status}, limit ,offset, include: {all: true}})
+            }
+            if (!organizationAddressId && departmentAppealId && !status && statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {departmentAppealId, statusLegal}, limit ,offset, include: {all: true}})
+            }
+            if (!organizationAddressId && !departmentAppealId && status && statusLegal){
+                appeals = await ElectronicAppeal.findAndCountAll({where: {status,statusLegal}, limit ,offset, include: {all: true}})
+            }
+
             return res.json(appeals)
         } catch (error) {
             next(ApiError.badRequest(error.message))

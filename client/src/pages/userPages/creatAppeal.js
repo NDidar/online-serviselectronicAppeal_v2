@@ -6,7 +6,7 @@
 // import individualAppeal from "./individualAppeal";
 // import legalEntityAppeal from "./legalEntityAppeal";
 // import {observer} from "mobx-react-lite";
-// import DropdownMenu from "../../components/DropdownMenu";
+// import DropdownMenus from "../../components/DropdownMenus";
 // import TabLegalEntityAppeal from "../../components/TabLegalEntityAppeal";
 // import TabNaturalAppeal from "../../components/TabNaturalAppeal";
 // function TabPanel(props) {
@@ -79,13 +79,13 @@
 //                >
 //                    <TabPanel value={value} index={0} dir={theme.direction}>
 //                        <Container>
-//                            <DropdownMenu />
+//                            <DropdownMenus />
 //                             <TabNaturalAppeal />
 //                        </Container>
 //                    </TabPanel>
 //                    <TabPanel value={value} index={1} dir={theme.direction}>
 //                        <Container>
-//                            <DropdownMenu />
+//                            <DropdownMenus />
 //                            <TabLegalEntityAppeal />
 //                        </Container>
 //                    </TabPanel>
@@ -102,7 +102,7 @@
 import React, {useContext, useEffect} from 'react';
 import {observer} from "mobx-react-lite";
 import {Container, Tab, Tabs} from "react-bootstrap";
-import DropdownMenu from "../../components/DropdownMenu";
+import DropdownMenus from "../../components/DropdownMenus";
 import TabNaturalAppeal from "../../components/TabNaturalAppeal";
 import TabLegalEntityAppeal from "../../components/TabLegalEntityAppeal";
 import {Context} from "../../index";
@@ -118,13 +118,13 @@ const CreatAppeal = observer(() => {
 
     return (
         <Container>
-            <Tabs className='mt-2' variant={'pills'} id="uncontrolled-tab-example">
+            <Tabs className='mt-2' defaultActiveKey='home' variant={'pills'} id="uncontrolled-tab-example">
                 <Tab eventKey="home" title="Электронные обращения для граждан, в том числе индивидуальных предпринимателей">
-                    <DropdownMenu />
+                    <DropdownMenus />
                     <TabNaturalAppeal />
                 </Tab>
-                <Tab eventKey="profile" title="Электронные обращения для юридических лиц">
-                    <DropdownMenu />
+                <Tab eventKey="profile"  title="Электронные обращения для юридических лиц">
+                    <DropdownMenus />
                     <TabLegalEntityAppeal />
                 </Tab>
             </Tabs>

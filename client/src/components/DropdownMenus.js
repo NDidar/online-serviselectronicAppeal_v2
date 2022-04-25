@@ -3,7 +3,7 @@ import {observer} from "mobx-react-lite";
 import {Container, Dropdown, Row} from "react-bootstrap";
 import {Context} from "../index";
 
-const DropdownMenu = observer(() => {
+const DropdownMenus = observer(() => {
     const {appeal} = useContext(Context)
     return (
         <Container>
@@ -34,9 +34,10 @@ const DropdownMenu = observer(() => {
                         )}
                     </Dropdown.Menu>
                 </Dropdown>
+
             </Row>
         </Container>
     );
 });
 
-export default DropdownMenu;
+export default DropdownMenus;

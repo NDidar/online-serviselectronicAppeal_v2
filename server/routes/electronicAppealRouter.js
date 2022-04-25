@@ -7,6 +7,6 @@ router.post('/', Appeal.create)
 router.get('/', Appeal.getAll)
 router.get('/:id', Appeal.getOne)
 router.put('/:id', Appeal.update)
-router.delete('/:id', checkRole('USER'), Appeal.delete)
+router.delete('/:id', Appeal.delete)
 
 module.exports = router 

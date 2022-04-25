@@ -15,14 +15,14 @@ const ViewHistory = observer(() => {
     const history= useHistory()
 
     useEffect(() => {
-        fetchAppeals(null, null, 'reviewed',
+        fetchAppeals(null, null, null,'reviewed',
             9,1, user.userId).then(data => {
             appeal.setAppeals(data.rows)
         })
     }, [])
 
     useEffect(() => {
-        fetchAppeals(null, null, 'reviewed',
+        fetchAppeals(null, null, null,'reviewed',
             9,appeal.page, user.userId).then(data => {
             appeal.setAppeals(data.rows)
         })

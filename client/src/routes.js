@@ -15,7 +15,7 @@ import {
     PROFILE_ROUTE,
     HISTORY_APPEAL_USER_ROUTE,
     ACTIVE_APPEAL_USER_ROUTE,
-    APPEAL_ITEM_ROUTE, NOT_ACTIVE_APPEAL_USER_ROUTE
+    APPEAL_ITEM_ROUTE, NOT_ACTIVE_APPEAL_USER_ROUTE, NATURAL_TAB_ROUTE, LEGAL_TAB_ROUTE, ANON_TAB_ROUTE
 } from "./utils/Consts";
 import Auth from "./pages/Auth";
 import MainPage from "./pages/MainPage";
@@ -31,6 +31,9 @@ import viewHistory from "./pages/userPages/viewHistory";
 import viewActApp from "./pages/userPages/viewActApp";
 import AppealItem from "./components/AppealItem";
 import viewNotActApp from "./pages/userPages/viewNotActApp";
+import NaturalEntityAppealTab from "./components/tabs/NaturalEntityAppealTab";
+import LegalEntityAppealTab from "./components/tabs/LegalEntityAppealTab";
+import AnonAppealTab from "./components/tabs/AnonAppealTab";
 
 export const adminRoutes = [
     {
@@ -63,6 +66,22 @@ export const employeeRoutes = [
     {
         path: EMPLOYEE_ROUTE,
         Component: EmployeePage
+    },
+    {
+        path: APPEAL_ITEM_ROUTE + '/:id',
+        Component: AppealItem
+    },
+    {
+        path: NATURAL_TAB_ROUTE,
+        Component: NaturalEntityAppealTab
+    },
+    {
+        path: LEGAL_TAB_ROUTE,
+        Component: LegalEntityAppealTab
+    },
+    {
+        path: ANON_TAB_ROUTE,
+        Component: AnonAppealTab
     }
 ]
 

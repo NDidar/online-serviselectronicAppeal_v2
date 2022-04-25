@@ -12,13 +12,11 @@ const User = sequelize.define('user',{
     role: {type: DataTypes.STRING, defaultValue: "USER"}
 })
 
-const LegalEntity = sequelize.define('legal_entity',{
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    nameLegal: {type: DataTypes.STRING}
-})
 
 const ElectronicAppeal = sequelize.define('electronic_appeal',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    nameLegal: {type: DataTypes.STRING, defaultValue: null},
+    statusLegal: {type: DataTypes.BOOLEAN, defaultValue: false},
     name: {type: DataTypes.STRING},
     surname: {type: DataTypes.STRING},
     home_address: {type: DataTypes.STRING},
@@ -47,8 +45,7 @@ const DepartmentOfAppeal = sequelize.define('department_appeal', {
     department: {type: DataTypes.STRING, allowNull: false}
 })
 
-ElectronicAppeal.hasMany(LegalEntity, {as: 'info'});
-LegalEntity.belongsTo(ElectronicAppeal)
+
 
 User.hasMany(ElectronicAppeal)
 ElectronicAppeal.belongsTo(User)
@@ -67,7 +64,7 @@ AnonymousAppeal.belongsTo(DepartmentOfAppeal)
 
 module.exports = {
     User,
-    LegalEntity,
+
     ElectronicAppeal,
     AnonymousAppeal,
     DepartmentOfAppeal,

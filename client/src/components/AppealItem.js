@@ -1,17 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
-import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
+import {Button, Card, Col, Container, Dropdown, Image, Row} from "react-bootstrap";
 import { useParams} from "react-router-dom";
-import {fetchOneAppeal} from "../http/AppealApi";
+import {fetchOneAppeal, updateDepartment, updateStatus} from "../http/AppealApi";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
+import {Context} from "../index";
 
 const AppealItem = observer(() => {
-
+    const {user} = useContext(Context)
     const {id} = useParams();
-    const [oneAppeal, setOneAppeal] = useState()
+    const [oneAppeal, setOneAppeal] = useState({})
 
     useEffect(()=> {
         fetchOneAppeal(id).then(data => setOneAppeal(data))
         },[])
+    console.log(oneAppeal)
+
+    const updStatus = async (status) => {
+        try {
+            console.log(status)
+            updateStatus({status: status},id).then()
+            // window.location.reload()
+        }catch (e) {
+            console.error(e.message)
+        }
+    }
+
 
     return (
         <Container className='d-flex flex-column'>
@@ -25,8 +40,8 @@ const AppealItem = observer(() => {
                         <div style={{background:'transparent'}} className='d-flex mt-3'> Фио: {oneAppeal?.name} {oneAppeal?.surname}</div>
                         <div style={{background:'lightgray'}} className='d-flex mt-3'> Адрес проживания: {oneAppeal?.home_address} </div>
                         <div style={{background:'transparent'}} className='d-flex mt-3'> Email почта: {oneAppeal?.user?.email}</div>
-                        {oneAppeal?.info[0]?.nameLegal?
-                            <div style={{background:'lightgray'}} className='d-flex mt-3'> Юридический адрес: {oneAppeal?.info[0]?.nameLegal}</div>
+                        {oneAppeal?.nameLegal?
+                            <div style={{background:'lightgray'}} className='d-flex mt-3'> Название Юридического лица: {oneAppeal?.nameLegal? oneAppeal?.nameLegal : null}</div>
                             :
                             null
                         }
@@ -37,7 +52,22 @@ const AppealItem = observer(() => {
                     <Col md={4} >
                         <div className='d-flex flex-column justify-content-between mt-5 mb-3'>
                             <span className='mt-5'>Ниже можно скачать прикрепленный файл</span>
-                            <Button className='mt-5' variant={"outline-success"} href={'http://localhost:5000/' + oneAppeal?.file}>Скачать файл</Button></div>
+                            <Button className='mt-5' variant={"outline-success"} href={'http://localhost:5000/' + oneAppeal?.file}>Скачать файл</Button>
+                            {
+                                user.role == 'EMPLOYEE'?
+                                    <Dropdown className='mt-3'>
+                                        <DropdownToggle>{oneAppeal?.status == 'notreviewed'? 'Не рассмотрен' : oneAppeal?.status == 'viewed'? 'В процессе рассмотрений' : oneAppeal?.status == 'reviewed'? 'Рассмотрен' : 'Статус обращений'}</DropdownToggle>
+                                        <DropdownMenu>
+                                            <Dropdown.Item onClick={() => updStatus('notreviewed')} >Не рассмотрен</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => updStatus('viewed')}>В процессе рассмотрений</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => updStatus('reviewed')}>Рассмотрен</Dropdown.Item>
+                                        </DropdownMenu>
+                                    </Dropdown>
+                                    :
+                                    null
+                            }
+
+                        </div>
                     </Col>
                 </Row>
             </Card>

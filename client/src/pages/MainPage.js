@@ -51,7 +51,19 @@ const MainPage = observer( () => {
                             </Button>
                         </Row>
                         :
-                        null
+                        user.role == ''?
+                            <Row className='d-flex flex-column '>
+                                <Button
+
+                                    style={{fontSize: 20, marginTop: 20}}
+                                    variant={"outline-danger"}
+                                    onClick={() => history.push(HISTORY_APPEAL_USER_ROUTE)}
+                                >
+                                    Оставить анонимное обращения
+                                </Button>
+                            </Row>
+                            :
+                            null
                     }
                 </Col>
             </Row>
