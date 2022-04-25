@@ -18,6 +18,7 @@ export const EMPLOYEE_ROUTE = '/employeePage'
 export const NATURAL_TAB_ROUTE = '/naturalTab'
 export const LEGAL_TAB_ROUTE = '/legalTab'
 export const ANON_TAB_ROUTE = '/AnonTab'
+export const SEND_EMAIL_ROUTE = '/sendEmail'
 
 //admin
 export const CRUD_ORGANIZATION_ROUTE = '/crudOrganization'

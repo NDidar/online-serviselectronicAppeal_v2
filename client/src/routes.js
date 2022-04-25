@@ -15,7 +15,12 @@ import {
     PROFILE_ROUTE,
     HISTORY_APPEAL_USER_ROUTE,
     ACTIVE_APPEAL_USER_ROUTE,
-    APPEAL_ITEM_ROUTE, NOT_ACTIVE_APPEAL_USER_ROUTE, NATURAL_TAB_ROUTE, LEGAL_TAB_ROUTE, ANON_TAB_ROUTE
+    APPEAL_ITEM_ROUTE,
+    NOT_ACTIVE_APPEAL_USER_ROUTE,
+    NATURAL_TAB_ROUTE,
+    LEGAL_TAB_ROUTE,
+    ANON_TAB_ROUTE,
+    SEND_EMAIL_ROUTE
 } from "./utils/Consts";
 import Auth from "./pages/Auth";
 import MainPage from "./pages/MainPage";
@@ -34,6 +39,7 @@ import viewNotActApp from "./pages/userPages/viewNotActApp";
 import NaturalEntityAppealTab from "./components/tabs/NaturalEntityAppealTab";
 import LegalEntityAppealTab from "./components/tabs/LegalEntityAppealTab";
 import AnonAppealTab from "./components/tabs/AnonAppealTab";
+import Mailer from "./components/Mailer";
 
 export const adminRoutes = [
     {
@@ -82,6 +88,10 @@ export const employeeRoutes = [
     {
         path: ANON_TAB_ROUTE,
         Component: AnonAppealTab
+    },
+    {
+        path: SEND_EMAIL_ROUTE,
+        Component: Mailer
     }
 ]
 

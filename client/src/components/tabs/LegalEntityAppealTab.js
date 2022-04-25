@@ -23,7 +23,7 @@ const LegalEntityAppealTab = observer(() => {
         fetchOrganizations().then(organization => appeal.setOrganizations(organization))
         fetchAppeals(true,null, null, 'null',
             9,1).then(data => {
-                appeal.setLegalAppeals(data.rows)
+                appeal.setAppeals(data.rows)
                 appeal.setTotalCount(data.count)
             }
         )

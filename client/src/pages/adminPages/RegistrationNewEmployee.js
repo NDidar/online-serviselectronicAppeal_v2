@@ -14,10 +14,9 @@ function CloseIcon(props) {
 
 CloseIcon.propTypes = {fontSize: PropTypes.string};
 const RegistrationNewEmployee = observer(() => {
-    const {user} = useContext(Context)
+
     const location = useLocation();
     const history = useHistory();
-    const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailDirty, setEmailDirty] = useState(false)

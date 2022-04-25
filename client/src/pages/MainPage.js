@@ -5,7 +5,6 @@ import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import {useHistory} from "react-router-dom";
 import {
-    ACTIVE_APPEAL_USER_ROUTE,
     CREATE_APPEAL_ROUTE,
     HISTORY_APPEAL_USER_ROUTE,
     NOT_ACTIVE_APPEAL_USER_ROUTE

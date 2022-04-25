@@ -1,19 +1,27 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {Button, Card, Col, Container, Dropdown, Image, Row} from "react-bootstrap";
-import { useParams} from "react-router-dom";
-import {fetchOneAppeal, updateDepartment, updateStatus} from "../http/AppealApi";
+import {useHistory, useParams} from "react-router-dom";
+import {fetchOneAppeal, updateStatus} from "../http/AppealApi";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import {Context} from "../index";
+import {SEND_EMAIL_ROUTE} from "../utils/Consts";
+import Mailer from "./Mailer";
 
 const AppealItem = observer(() => {
     const {user} = useContext(Context)
     const {id} = useParams();
     const [oneAppeal, setOneAppeal] = useState({})
+    const [chooseVisible, setChooseVisible] = useState(false)
+
+    const history = useHistory()
 
     useEffect(()=> {
-        fetchOneAppeal(id).then(data => setOneAppeal(data))
+        fetchOneAppeal(id).then(data => {
+            setOneAppeal(data)
+            setOneAppeal(data)
+        })
         },[])
     console.log(oneAppeal)
 
@@ -50,23 +58,26 @@ const AppealItem = observer(() => {
                         <Image style={{width: 300, height: 300}} src={'http://localhost:5000/' + oneAppeal?.img}/>
                     </Col>
                     <Col md={4} >
-                        <div className='d-flex flex-column justify-content-between mt-5 mb-3'>
-                            <span className='mt-5'>Ниже можно скачать прикрепленный файл</span>
+                        <div className='d-flex flex-column justify-content-between mt-3 mb-3'>
+                            <span >Ниже можно скачать прикрепленный файл</span>
                             <Button className='mt-5' variant={"outline-success"} href={'http://localhost:5000/' + oneAppeal?.file}>Скачать файл</Button>
                             {
                                 user.role == 'EMPLOYEE'?
-                                    <Dropdown className='mt-3'>
-                                        <DropdownToggle>{oneAppeal?.status == 'notreviewed'? 'Не рассмотрен' : oneAppeal?.status == 'viewed'? 'В процессе рассмотрений' : oneAppeal?.status == 'reviewed'? 'Рассмотрен' : 'Статус обращений'}</DropdownToggle>
-                                        <DropdownMenu>
-                                            <Dropdown.Item onClick={() => updStatus('notreviewed')} >Не рассмотрен</Dropdown.Item>
-                                            <Dropdown.Item onClick={() => updStatus('viewed')}>В процессе рассмотрений</Dropdown.Item>
-                                            <Dropdown.Item onClick={() => updStatus('reviewed')}>Рассмотрен</Dropdown.Item>
-                                        </DropdownMenu>
-                                    </Dropdown>
+                                    <div>
+                                        <Dropdown className='mt-3'>
+                                            <DropdownToggle>{oneAppeal?.status == 'notreviewed'? 'Не рассмотрен' : oneAppeal?.status == 'viewed'? 'В процессе рассмотрений' : oneAppeal?.status == 'reviewed'? 'Рассмотрен' : 'Статус обращений'}</DropdownToggle>
+                                            <DropdownMenu>
+                                                <Dropdown.Item onClick={() => updStatus('notreviewed')} >Не рассмотрен</Dropdown.Item>
+                                                <Dropdown.Item onClick={() => updStatus('viewed')}>В процессе рассмотрений</Dropdown.Item>
+                                                <Dropdown.Item onClick={() => updStatus('reviewed')}>Рассмотрен</Dropdown.Item>
+                                            </DropdownMenu>
+                                        </Dropdown>
+                                        <Button variant={"outline-dark"} className='mt-3 p-2' onClick={() => setChooseVisible(true)}>Ответ на электронную почту</Button>
+                                        <Mailer oneAppeal={oneAppeal} show={chooseVisible} onHide={() => setChooseVisible(false)} />
+                                    </div>
                                     :
                                     null
                             }
-
                         </div>
                     </Col>
                 </Row>

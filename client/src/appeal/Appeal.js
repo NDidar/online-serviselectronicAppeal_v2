@@ -6,11 +6,10 @@ export default class Appeal{
         this._organizations = []
         this._departments = []
         this._appeals = []
-        this._legalAppeals = []
-        this._anonAppeals = []
         this._selectedOrganization = {}
         this._selectedDepartment = {}
         this._selectedStatus = {}
+        this._oneAppeal = {}
         this._page = 1
         this._total_count = 0
         this._limit = 9
@@ -88,28 +87,11 @@ export default class Appeal{
     }
 
 
-    get selectedStatus() {
-        return this._selectedStatus;
+    get oneAppeal() {
+        return this._oneAppeal;
     }
 
-    setSelectedStatus(value) {
-        this._selectedStatus = value;
-    }
-
-
-    get legalAppeals() {
-        return this._legalAppeals;
-    }
-
-    setLegalAppeals(value) {
-        this._legalAppeals = value;
-    }
-
-    get anonAppeals() {
-        return this._anonAppeals;
-    }
-
-    setAnonAppeals(value) {
-        this._anonAppeals = value;
+    setOneAppeal(value) {
+        this._oneAppeal = value;
     }
 }
