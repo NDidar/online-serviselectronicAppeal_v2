@@ -3,7 +3,9 @@ export const ADMIN_ROUTE = '/admin'
 export const LOGIN_ROUTE = '/login'
 export const REGISTRATION_ROUTE = '/registration'
 export const ORGANIZATION_ROUTE = '/organization'
+export const ANON_APPEAL_ROUTE = '/createanonappeal'
 export const MAIN_ROUTE = '/'
+
 
 //user
 export const CREATE_APPEAL_ROUTE = '/createappeal'

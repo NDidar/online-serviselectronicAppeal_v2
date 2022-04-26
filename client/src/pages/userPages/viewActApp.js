@@ -1,6 +1,6 @@
 import React, {Fragment, useContext, useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
-import {Button, Col, Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import Pages from "../../components/Pages";
 import {deleteAppeal, fetchAppeals} from "../../http/AppealApi";

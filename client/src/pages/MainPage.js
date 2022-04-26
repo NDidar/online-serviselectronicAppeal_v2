@@ -5,6 +5,7 @@ import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import {useHistory} from "react-router-dom";
 import {
+    ANON_APPEAL_ROUTE,
     CREATE_APPEAL_ROUTE,
     HISTORY_APPEAL_USER_ROUTE,
     NOT_ACTIVE_APPEAL_USER_ROUTE
@@ -18,7 +19,7 @@ const MainPage = observer( () => {
         <Container>
             <Row style={{background: `url(${bgImageMainPage}) no-repeat center center`, width:1142, height: 640, backgroundSize: 'cover'}}>
                 <Col className='d-flex flex-column justify-content-center align-items-end'>
-                    {user.role == 'USER'?
+                    {user.role === 'USER'?
                         <Row className='d-flex flex-column '>
                             <Button
                                 style={{fontSize: 20}}
@@ -36,13 +37,13 @@ const MainPage = observer( () => {
                             </Button>
                         </Row>
                         :
-                        user.role == null?
+                        user.role === ''?
                             <Row className='d-flex flex-column '>
                                 <Button
 
                                     style={{fontSize: 20, marginTop: 20}}
                                     variant={"outline-danger"}
-                                    onClick={() => history.push(HISTORY_APPEAL_USER_ROUTE)}
+                                    onClick={() => history.push(ANON_APPEAL_ROUTE)}
                                 >
                                     Оставить анонимное обращения
                                 </Button>

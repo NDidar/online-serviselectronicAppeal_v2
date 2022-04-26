@@ -12,7 +12,6 @@ class anonymousAppealController {
             const fileName = uuid.v4() + ".doc";
             img.mv(path.resolve(__dirname, '..','static', imgName))
             file.mv(path.resolve(__dirname, '..','static', fileName))
-
             const anonAppeal = await AnonymousAppeal.create({content, organizationAddressId, departmentAppealId, img: imgName, file: fileName})
             return res.json(anonAppeal)
         }catch (e) {
@@ -30,16 +29,16 @@ class anonymousAppealController {
             console.log(organizationAddressId);
             let appeals;
             if (!organizationAddressId && !departmentAppealId){
-                appeals = await AnonymousAppeal.findAndCountAll({where: {status}, limit, offset})
+                appeals = await AnonymousAppeal.findAndCountAll({where: {status}, limit, offset, include: {all: true}})
             }
             if (organizationAddressId && !departmentAppealId){
-                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,status}, limit, offset})
+                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,status}, limit, offset,include: {all: true}})
             }
             if (!organizationAddressId && departmentAppealId ){
-                appeals = await AnonymousAppeal.findAndCountAll({where: {departmentAppealId, status}, limit, offset})
+                appeals = await AnonymousAppeal.findAndCountAll({where: {departmentAppealId, status}, limit, offset,include: {all: true}})
             }
             if (organizationAddressId && departmentAppealId ){
-                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId,status}, limit, offset})
+                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId,status}, limit, offset,include: {all: true}})
             }
             return res.json(appeals)
         } catch (error) {

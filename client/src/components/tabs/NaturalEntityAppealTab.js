@@ -8,7 +8,6 @@ import {APPEAL_ITEM_ROUTE} from "../../utils/Consts";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {useHistory} from "react-router-dom";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import Pages from "../Pages";
 
@@ -17,7 +16,6 @@ const NaturalEntityAppealTab = observer(() => {
     const [selectedStatus, setSelectedStatus] = useState(null)
     const [selectedStatusData, setSelectedStatusData] = useState(null)
     const {appeal} = useContext(Context)
-    const {user} = useContext(Context)
     const history = useHistory()
 
     useEffect(() => {
@@ -41,8 +39,6 @@ const NaturalEntityAppealTab = observer(() => {
         )
     },[appeal.selectedOrganization, appeal.selectedDepartment, appeal.page, selectedStatusData])
 
-
-    console.log(appeal.appeals)
 
     const delAppeal = async (id) => {
         deleteAppeal(id).then()
@@ -81,8 +77,8 @@ const NaturalEntityAppealTab = observer(() => {
                 <thead>
                 <tr>
                     <th>Дата обращения</th>
-                    <th>ФИО</th>
                     <th>Организация</th>
+                    <th>Деятельность</th>
                     <th>Статус</th>
                 </tr>
                 </thead>
@@ -97,7 +93,6 @@ const NaturalEntityAppealTab = observer(() => {
                     </tr>
                 ))}
                 </tbody>
-
             </Table>
             <Pages />
         </Container>

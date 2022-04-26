@@ -5,6 +5,7 @@ import {Context} from "../index";
 
 const DropdownMenus = observer(() => {
     const {appeal} = useContext(Context)
+
     return (
         <Container>
             <Row className='d-flex'>
@@ -34,7 +35,6 @@ const DropdownMenus = observer(() => {
                         )}
                     </Dropdown.Menu>
                 </Dropdown>
-
             </Row>
         </Container>
     );

@@ -10,7 +10,6 @@ import {
     CRUD_DEPARTMENT_ROUTE,
     REGISTRATION_EMPLOYEE_ROUTE,
     CRUD_EMPLOYEE_ROUTE,
-    EMPLOYEE_Profile_ROUTE,
     EMPLOYEE_PROFILE_ROUTE,
     PROFILE_ROUTE,
     HISTORY_APPEAL_USER_ROUTE,
@@ -20,7 +19,7 @@ import {
     NATURAL_TAB_ROUTE,
     LEGAL_TAB_ROUTE,
     ANON_TAB_ROUTE,
-    SEND_EMAIL_ROUTE
+    SEND_EMAIL_ROUTE, ANON_APPEAL_ROUTE
 } from "./utils/Consts";
 import Auth from "./pages/Auth";
 import MainPage from "./pages/MainPage";
@@ -40,6 +39,7 @@ import NaturalEntityAppealTab from "./components/tabs/NaturalEntityAppealTab";
 import LegalEntityAppealTab from "./components/tabs/LegalEntityAppealTab";
 import AnonAppealTab from "./components/tabs/AnonAppealTab";
 import Mailer from "./components/Mailer";
+import CreateAnonAppeal from "./pages/userPages/CreateAnonAppeal";
 
 export const adminRoutes = [
     {
@@ -135,4 +135,8 @@ export const publicRoutes = [
         path: MAIN_ROUTE,
         Component: MainPage
     },
+    {
+        path: ANON_APPEAL_ROUTE,
+        Component: CreateAnonAppeal
+    }
 ]

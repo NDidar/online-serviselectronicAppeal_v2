@@ -50,11 +50,6 @@ export const creatElectronicAppeal = async (appeal) => {
     return data
 }
 
-export const creatLegApp = async (legAppeal) => {
-    const {data} = await $host.post('api/appeal', legAppeal)
-    return data
-}
-
 export const fetchAppeals = async (statusLegal, organizationAddressId,departmentAppealId, status,limit, page, userId) => {
     const {data} = await $host.get('api/appeal', {params: {
             statusLegal, organizationAddressId, departmentAppealId,
@@ -76,5 +71,20 @@ export const updateStatus = async (status, id) => {
 export const deleteAppeal = async (id) => {
     const {data} = await $host.delete('api/appeal/' + id)
     console.log(id)
+    return data
+}
+
+//Anon appeal
+
+export const creatAnonAppeal = async (appeal) => {
+    const {data} = await $host.post('api/anonymousAppeal', appeal)
+    return data
+}
+
+export const fetchAnonAppeals = async (organizationAddressId,departmentAppealId, status,limit, page) => {
+    const {data} = await $host.get('api/anonymousAppeal', {params: {
+            organizationAddressId, departmentAppealId,
+            status, limit, page
+        }})
     return data
 }

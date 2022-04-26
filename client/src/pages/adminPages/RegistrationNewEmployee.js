@@ -1,9 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {Button, Card, Container, Form} from "react-bootstrap";
 import {Alert, IconButton, Snackbar, TextField} from "@mui/material";
 import * as PropTypes from "prop-types";
-import {Context} from "../../index";
 import {useHistory, useLocation} from "react-router-dom";
 import {CRUD_EMPLOYEE_ROUTE, LOGIN_ROUTE} from "../../utils/Consts";
 import {registration} from "../../http/UserApi";
@@ -15,7 +14,7 @@ function CloseIcon(props) {
 CloseIcon.propTypes = {fontSize: PropTypes.string};
 const RegistrationNewEmployee = observer(() => {
 
-    const location = useLocation();
+
     const history = useHistory();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

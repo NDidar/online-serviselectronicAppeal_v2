@@ -1,16 +1,10 @@
 import React, {useContext} from 'react';
 import {observer} from "mobx-react-lite";
 import emailjs from 'emailjs-com'
-import {Context} from "../index";
-import {Box, Modal, Typography} from "@mui/material";
+import {Box, Modal} from "@mui/material";
 
 
 const Mailer = observer(({show, onHide, oneAppeal}) => {
-
-    const {appeal} = useContext(Context)
-
-
-    console.log(appeal.oneAppeal)
 
     function getDateWithoutTime(date) {
         return require('moment')(date).format('YYYY-MM-DD');

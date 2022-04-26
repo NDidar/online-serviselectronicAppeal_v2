@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {Button, Form, Row} from "react-bootstrap";
-import CreatAppeal from "../pages/userPages/creatAppeal";
 import {creatElectronicAppeal} from "../http/AppealApi";
 import {Context} from "../index";
 import {fetchUser} from "../http/UserApi";
@@ -19,8 +18,7 @@ const TabNaturalAppeal = observer(() => {
     const [essence, setEssence] = useState('')
     const [img, setImg] = useState(null)
     const [file, setFile] = useState(null)
-    const [organization, setOrganization] = useState(null)
-    const [department, setDepartment] = useState(null)
+
 
     useEffect(()=>{
         fetchUser(user.userId).then(data =>{
@@ -57,7 +55,7 @@ const TabNaturalAppeal = observer(() => {
         formData.append('userId', user.userId)
         formData.append('organizationAddressId', appeal.selectedOrganization.id)
         formData.append('departmentAppealId', appeal.selectedDepartment.id)
-        creatElectronicAppeal(formData).then(data => console.log('all right'))
+        creatElectronicAppeal(formData).then()
     }
 
     return (
