@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/online-serviselectronicAppeal_v2/static/js/main.b0a6d056.chunk.js",
+    "main.js.map": "/online-serviselectronicAppeal_v2/static/js/main.b0a6d056.chunk.js.map",
+    "runtime-main.js": "/online-serviselectronicAppeal_v2/static/js/runtime-main.b0b3c763.js",
+    "runtime-main.js.map": "/online-serviselectronicAppeal_v2/static/js/runtime-main.b0b3c763.js.map",
+    "static/js/2.56f1c307.chunk.js": "/online-serviselectronicAppeal_v2/static/js/2.56f1c307.chunk.js",
+    "static/js/2.56f1c307.chunk.js.map": "/online-serviselectronicAppeal_v2/static/js/2.56f1c307.chunk.js.map",
+    "index.html": "/online-serviselectronicAppeal_v2/index.html",
+    "static/js/2.56f1c307.chunk.js.LICENSE.txt": "/online-serviselectronicAppeal_v2/static/js/2.56f1c307.chunk.js.LICENSE.txt",
+    "static/media/avatar.565306ac.jpg": "/online-serviselectronicAppeal_v2/static/media/avatar.565306ac.jpg",
+    "static/media/maxresdefault.ab4e5173.jpg": "/online-serviselectronicAppeal_v2/static/media/maxresdefault.ab4e5173.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b0b3c763.js",
+    "static/js/2.56f1c307.chunk.js",
+    "static/js/main.b0a6d056.chunk.js"
+  ]
+}
