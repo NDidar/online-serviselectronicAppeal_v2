@@ -1,6 +1,7 @@
 <h1 align="center">
-    <a s href="https://eziz2201.github.io/react-app-book_store/">Electronic appeal</a>
+    <a s href="https://ndidar.github.io/online-serviselectronicAppeal_v2/">Electronic appeal</a>
 </h1>
+
 
 # Getting Started with Create React App
 
