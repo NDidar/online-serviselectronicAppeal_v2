@@ -6,7 +6,7 @@ export default class userAppeal{
         this._user = {}
         this._role = ''
         this._userId = ''
-        this._employees = []
+        // this._employees = []
         makeAutoObservable(this);
     }
 
@@ -37,13 +37,13 @@ export default class userAppeal{
     }
 
 
-    get employees() {
-        return this._employees;
-    }
-
-    setEmployees(value) {
-        this._employees = value;
-    }
+    // get employees() {
+    //     return this._employees;
+    // }
+    //
+    // setEmployees(value) {
+    //     this._employees = value;
+    // }
 
 
     get userId() {

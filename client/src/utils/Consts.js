@@ -2,7 +2,6 @@
 export const ADMIN_ROUTE = '/admin'
 export const LOGIN_ROUTE = '/login'
 export const REGISTRATION_ROUTE = '/registration'
-export const ORGANIZATION_ROUTE = '/organization'
 export const ANON_APPEAL_ROUTE = '/createanonappeal'
 export const MAIN_ROUTE = '/'
 
@@ -21,6 +20,10 @@ export const NATURAL_TAB_ROUTE = '/naturalTab'
 export const LEGAL_TAB_ROUTE = '/legalTab'
 export const ANON_TAB_ROUTE = '/AnonTab'
 export const SEND_EMAIL_ROUTE = '/sendEmail'
+export const ANON_APPEAL_ITEM_ROUTE = '/anonappealItem'
+export const DIAGRAM_ROUTE = '/diagramFirst'
+export const DIAGRAM_SECOND_ROUTE = '/diagramSecond'
+
 
 //admin
 export const CRUD_ORGANIZATION_ROUTE = '/crudOrganization'

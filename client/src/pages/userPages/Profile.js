@@ -3,6 +3,7 @@ import {Col, Container, Form, FormControl, Row} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
 import {fetchUser, updateUser} from "../../http/UserApi";
 import {Context} from "../../index";
+import {FaSave} from "react-icons/fa";
 
 const Profile = observer( () => {
     const {user} = useContext(Context)
@@ -83,7 +84,7 @@ const Profile = observer( () => {
                                     </Form>
                                 </Col>
                                 <Col className='d-flex align-items-end '>
-                                    <button onClick={updName}><i className="material-icons">edit</i></button>
+                                    <button onClick={updName}><FaSave /></button>
                                 </Col>
                                 <Col md={4}><label className="labels">Фамилия</label>
                                     <FormControl
@@ -94,7 +95,7 @@ const Profile = observer( () => {
                                     />
                                 </Col>
                                 <Col className='d-flex align-items-end '>
-                                    <button onClick={updSurname}><i className="material-icons">edit</i></button>
+                                    <button onClick={updSurname}><FaSave /></button>
                                 </Col>
                             </Row>
                             <Row className="mt-3">
@@ -107,7 +108,7 @@ const Profile = observer( () => {
                                     />
                                 </Col>
                                 <Col className='d-flex align-items-end '>
-                                    <button onClick={updPhone_number}><i className="material-icons">edit</i></button>
+                                    <button onClick={updPhone_number}><FaSave /></button>
                                 </Col>
                                 <Col md={10}><label className="labels">Адрес проживание</label>
                                     <FormControl
@@ -118,7 +119,7 @@ const Profile = observer( () => {
                                     />
                                 </Col>
                                 <Col className='d-flex align-items-end '>
-                                    <button onClick={updDelivery_address}><i className="material-icons">edit</i></button>
+                                    <button onClick={updDelivery_address}><FaSave /></button>
                                 </Col>
                             </Row>
                         </Col>

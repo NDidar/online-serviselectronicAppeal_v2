@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import bgImageMainPage from '../../../../online-service-for-electronic-appeal_v2/client/src/Assets/maxresdefault.jpg'
 import {Context} from "../index";
@@ -7,7 +7,6 @@ import {useHistory} from "react-router-dom";
 import {
     ANON_APPEAL_ROUTE,
     CREATE_APPEAL_ROUTE,
-    HISTORY_APPEAL_USER_ROUTE,
     NOT_ACTIVE_APPEAL_USER_ROUTE
 } from "../utils/Consts";
 
@@ -26,14 +25,14 @@ const MainPage = observer( () => {
                                 variant={"outline-danger"}
                                 onClick={() => history.push(CREATE_APPEAL_ROUTE)}
                             >
-                                Создать электронное обращения
+                                Создать электронное обращение
                             </Button>
                             <Button
                                 style={{fontSize: 20, marginTop: 20}}
                                 variant={"outline-danger"}
                                 onClick={() => history.push(NOT_ACTIVE_APPEAL_USER_ROUTE)}
                             >
-                                Просмотр обращении
+                                Просмотр обращений
                             </Button>
                         </Row>
                         :

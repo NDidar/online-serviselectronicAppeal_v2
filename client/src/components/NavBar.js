@@ -1,13 +1,16 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {Context} from "../index";
 import {NavLink, useHistory} from "react-router-dom";
-import {ADMIN_ROUTE, EMPLOYEE_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, PROFILE_ROUTE} from "../utils/Consts";
+import {ADMIN_ROUTE,  EMPLOYEE_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, PROFILE_ROUTE} from "../utils/Consts";
 import {observer} from "mobx-react-lite";
+import ChooseChart from "./modals/ChooseChart";
 
 const NavBar = observer(() => {
     const {user} = useContext(Context)
+    const {appeal} = useContext(Context)
     const history = useHistory()
+    const [chooseVisible, setChooseVisible] = useState(false)
 
     const logOut = () => {
         user.setUser({})
@@ -21,23 +24,24 @@ const NavBar = observer(() => {
                 <Container>
                     <NavLink style={{color: 'white'}} to={MAIN_ROUTE}>ФЗСН</NavLink>
                     {user.isAuth ?
-                        user.role == "ADMIN"?
+                        user.role === "ADMIN"?
                             <Nav className='ml-auto' style={{color: 'white'}}>
                                 <Button variant={"outline-light"} onClick={()=> history.push(ADMIN_ROUTE)}>Админ панель </Button>
                                 <Button className='ml-2' variant={"outline-light"} onClick={()=> logOut()}>Выйти</Button>
                             </Nav>
                             :
-                            user.role == "USER"?
+                            user.role === "USER"?
                                 <Nav className='ml-auto' style={{color: 'white'}}>
                                     <Button variant={"outline-light"} onClick={()=> history.push(PROFILE_ROUTE)}>Профиль </Button>
                                     <Button className='ml-2' variant={"outline-light"} onClick={()=> logOut()}>Выйти</Button>
                                 </Nav>
                                 :
-                                user.role == "EMPLOYEE"?
+                                user.role === "EMPLOYEE"?
                                     <Nav className='ml-auto' style={{color: 'white'}}>
-
-                                        <Button variant={"outline-light"} onClick={()=> history.push(EMPLOYEE_ROUTE)}>Панель работника</Button>
+                                        <Button variant={"outline-light"} onClick={() => appeal.setIsHide(true)}>Статистика</Button>
+                                        <Button className='ml-2' variant={"outline-light"} onClick={()=> history.push(EMPLOYEE_ROUTE)}>Панель работника</Button>
                                         <Button className='ml-2' variant={"outline-light"} onClick={()=> logOut()}>Выйти</Button>
+                                        <ChooseChart show={appeal.isHide} onHide={appeal.isHide}/>
                                     </Nav>
                                     :
                                     null

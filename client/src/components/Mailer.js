@@ -12,8 +12,8 @@ const Mailer = observer(({show, onHide, oneAppeal}) => {
 
     function sendEmail(e){
         e.preventDefault()
-        emailjs.sendForm('service_xyt2vtn','t' +
-            'emplate_9nyoeit', e.target, 'OdNl7gdZKkEzQnOwt'
+        emailjs.sendForm('service_xyt2vtn',
+            'template_9nyoeit', e.target, 'OdNl7gdZKkEzQnOwt'
         ).then(res => {
             console.log(res)
 
@@ -69,7 +69,7 @@ const Mailer = observer(({show, onHide, oneAppeal}) => {
                                 <label>Дата обращении</label>
                                 <input className='form-control' type='date' name='dateAppeal' defaultValue={getDateWithoutTime(oneAppeal?.createdAt)}/>
 
-                                <input type='submit' value='Send' className='form-control btn btn-primary mt-3' onSubmit={sendEmail} onClick={onHide}/>
+                                <input type='submit' value='Send' className='form-control btn btn-primary mt-3' />
                             </form>
                         </div>
                 </Box>

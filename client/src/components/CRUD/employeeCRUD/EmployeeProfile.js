@@ -1,10 +1,11 @@
-import React, {Fragment, useContext, useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Button, Col, Container, Form, FormControl, Row} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
 import {deleteUser, fetchUser, updateUser} from "../../../http/UserApi";
 import {useHistory, useParams} from "react-router-dom";
-import {deleteDepartment} from "../../../http/AppealApi";
 import {CRUD_EMPLOYEE_ROUTE} from "../../../utils/Consts";
+import {FaSave} from "react-icons/fa";
+
 
 
 const EmployeeProfile = observer( () => {
@@ -98,7 +99,7 @@ const EmployeeProfile = observer( () => {
                                     </Form>
                                 </Col>
                                 <Col className='d-flex align-items-end '>
-                                    <button onClick={updName}><i className="material-icons">edit</i></button>
+                                    <button onClick={updName}><FaSave /></button>
                                 </Col>
                                 <Col md={4}><label className="labels">Фамилия</label>
                                     <FormControl
@@ -109,7 +110,7 @@ const EmployeeProfile = observer( () => {
                                     />
                                 </Col>
                                 <Col className='d-flex align-items-end '>
-                                    <button onClick={updSurname}><i className="material-icons">edit</i></button>
+                                    <button onClick={updSurname}><FaSave /></button>
                                 </Col>
                             </Row>
                             <Row className="mt-3">
@@ -122,7 +123,7 @@ const EmployeeProfile = observer( () => {
                                     />
                                 </Col>
                                 <Col className='d-flex align-items-end '>
-                                    <button onClick={updPhone_number}><i className="material-icons">edit</i></button>
+                                    <button onClick={updPhone_number}><FaSave /></button>
                                 </Col>
                                 <Col md={10}><label className="labels">Адрес проживание</label>
                                     <FormControl
@@ -133,7 +134,7 @@ const EmployeeProfile = observer( () => {
                                     />
                                 </Col>
                                 <Col className='d-flex align-items-end '>
-                                    <button onClick={updHome_address}><i className="material-icons">edit</i></button>
+                                    <button onClick={updHome_address}><FaSave /></button>
                                 </Col>
                                 <Col  className='d-flex align-items-end'>
                                     <Button className='d-flex mt-3' variant={"outline-danger"} onClick={delEmployee}>Удалить оператора из базы данных</Button>

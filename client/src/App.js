@@ -6,7 +6,7 @@ import {observer} from "mobx-react-lite";
 import {Context} from "./index";
 import {check} from "./http/UserApi";
 import {Spinner} from "react-bootstrap";
-require('dotenv').config()
+
 
 
 const App = observer(() => {

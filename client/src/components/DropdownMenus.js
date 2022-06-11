@@ -10,7 +10,7 @@ const DropdownMenus = observer(() => {
         <Container>
             <Row className='d-flex'>
                 <Dropdown className="mt-2 mb-2">
-                    <Dropdown.Toggle>{appeal.selectedOrganization.organization_name || "Выберите адрес организации"}</Dropdown.Toggle>
+                    <Dropdown.Toggle variant={"outline-dark"}>{appeal.selectedOrganization.organization_name || "Выберите адрес организации"}</Dropdown.Toggle>
                     <Dropdown.Menu variant={'outline-dark'}>
                         {appeal.organizations.map(organization =>
                             <Dropdown.Item
@@ -23,7 +23,7 @@ const DropdownMenus = observer(() => {
                     </Dropdown.Menu>
                 </Dropdown>
                 <Dropdown className="mt-2 mb-2 ml-4">
-                    <Dropdown.Toggle>{appeal.selectedDepartment.department || "Выберите вид деятельности"}</Dropdown.Toggle>
+                    <Dropdown.Toggle variant={"outline-dark"}>{appeal.selectedDepartment.department || "Выберите вид деятельности"}</Dropdown.Toggle>
                     <Dropdown.Menu>
                         {appeal.departments.map(department =>
                             <Dropdown.Item

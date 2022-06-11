@@ -53,7 +53,7 @@ const LegalEntityAppealTab = observer(() => {
                 <div className='d-flex align-items-center justify-content-center'>
                     <DropdownMenus/>
                     <Dropdown className='ml-4'>
-                        <DropdownToggle>{selectedStatus || 'Выберите статус обращения'}</DropdownToggle>
+                        <DropdownToggle variant={"outline-dark"}>{selectedStatus || 'Выберите статус обращения'}</DropdownToggle>
                         <DropdownMenu >
                             <Dropdown.Item onClick={() => {
                                 setSelectedStatus('Не рассмотрено')

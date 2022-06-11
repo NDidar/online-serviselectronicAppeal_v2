@@ -19,7 +19,7 @@ import {
     NATURAL_TAB_ROUTE,
     LEGAL_TAB_ROUTE,
     ANON_TAB_ROUTE,
-    SEND_EMAIL_ROUTE, ANON_APPEAL_ROUTE
+    SEND_EMAIL_ROUTE, ANON_APPEAL_ROUTE, ANON_APPEAL_ITEM_ROUTE, DIAGRAM_ROUTE, DIAGRAM_SECOND_ROUTE
 } from "./utils/Consts";
 import Auth from "./pages/Auth";
 import MainPage from "./pages/MainPage";
@@ -40,6 +40,9 @@ import LegalEntityAppealTab from "./components/tabs/LegalEntityAppealTab";
 import AnonAppealTab from "./components/tabs/AnonAppealTab";
 import Mailer from "./components/Mailer";
 import CreateAnonAppeal from "./pages/userPages/CreateAnonAppeal";
+import AnonAppealItem from "./components/AnonAppealItem";
+import Diagram from "./pages/employeePages/Diagram";
+import DiagramLegal from "./pages/employeePages/DiagramLegal";
 
 export const adminRoutes = [
     {
@@ -92,6 +95,19 @@ export const employeeRoutes = [
     {
         path: SEND_EMAIL_ROUTE,
         Component: Mailer
+    },
+    {
+        path: ANON_APPEAL_ITEM_ROUTE + '/:id',
+        Component: AnonAppealItem
+    }
+    ,
+    {
+        path: DIAGRAM_ROUTE,
+        Component: Diagram
+    },
+    {
+        path: DIAGRAM_SECOND_ROUTE,
+        Component: DiagramLegal
     }
 ]
 

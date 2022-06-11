@@ -88,3 +88,13 @@ export const fetchAnonAppeals = async (organizationAddressId,departmentAppealId,
         }})
     return data
 }
+
+export const fetchOneAnonAppeal = async (id) => {
+    const {data} = await $host.get('api/anonymousAppeal/' + id)
+    return data
+}
+
+export const updateAnonStatus = async (status, id) => {
+    const {data} = await $host.put('api/anonymousAppeal/' + id, status)
+    return data
+}

@@ -8,8 +8,8 @@ export default class Appeal{
         this._appeals = []
         this._selectedOrganization = {}
         this._selectedDepartment = {}
-        this._selectedStatus = {}
-        this._oneAppeal = {}
+        this._isHide = false;
+        // this._oneAppeal = {}
         this._page = 1
         this._total_count = 0
         this._limit = 9
@@ -82,16 +82,33 @@ export default class Appeal{
         return this._limit;
     }
 
-    setLimit(limit) {
-        this._limit = limit;
+    // setLimit(limit) {
+    //     this._limit = limit;
+    // }
+
+
+    // get oneAppeal() {
+    //     return this._oneAppeal;
+    // }
+    //
+    // setOneAppeal(value) {
+    //     this._oneAppeal = value;
+    // }
+
+
+    get isHide() {
+        return this._isHide;
     }
 
-
-    get oneAppeal() {
-        return this._oneAppeal;
+    setIsHide(value) {
+        this._isHide = value;
     }
 
-    setOneAppeal(value) {
-        this._oneAppeal = value;
+    get total_count() {
+        return this._total_count;
+    }
+
+    set total_count(value) {
+        this._total_count = value;
     }
 }

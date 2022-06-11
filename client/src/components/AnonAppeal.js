@@ -4,8 +4,8 @@ import {Button, Container, Form} from "react-bootstrap";
 import {Context} from "../index";
 import {creatAnonAppeal} from "../http/AppealApi";
 import InformationalWarning from "./modals/InformationalWarning";
-import {useHistory} from "react-router-dom";
-import {MAIN_ROUTE} from "../utils/Consts";
+
+
 
 const AnonAppeal = observer(() => {
     const {appeal} = useContext(Context)
@@ -15,7 +15,7 @@ const AnonAppeal = observer(() => {
     const [file, setFile] = useState(null)
 
     const [show, setShow] = useState(false);
-    const history = useHistory();
+
 
     const selectImg = e =>{
         setImg(e.target.files[0])

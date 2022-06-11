@@ -2,7 +2,7 @@ import {$authHost, $host} from "./index";
 import jwtDecode from "jwt-decode";
 
 export const registration = async (email, password, role) => {
-    if(role == 'EMPLOYEE'){
+    if(role === 'EMPLOYEE'){
         const {data} = await $host.post('api/user/registration', {email, password, role})
         return data
     } else{

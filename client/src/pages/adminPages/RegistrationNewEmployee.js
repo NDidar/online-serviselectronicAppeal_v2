@@ -3,8 +3,8 @@ import {observer} from "mobx-react-lite";
 import {Button, Card, Container, Form} from "react-bootstrap";
 import {Alert, IconButton, Snackbar, TextField} from "@mui/material";
 import * as PropTypes from "prop-types";
-import {useHistory, useLocation} from "react-router-dom";
-import {CRUD_EMPLOYEE_ROUTE, LOGIN_ROUTE} from "../../utils/Consts";
+import {useHistory} from "react-router-dom";
+import {CRUD_EMPLOYEE_ROUTE} from "../../utils/Consts";
 import {registration} from "../../http/UserApi";
 
 function CloseIcon(props) {
@@ -24,6 +24,7 @@ const RegistrationNewEmployee = observer(() => {
     const [passwordError, setPasswordError] = useState('Пароль не может быть пустым')
     const [formValid, setFormValid] = useState(false)
     const [errorStatus, setErrorStatus] = useState('')
+
 
     useEffect(()=>{
         if (emailError || passwordError){

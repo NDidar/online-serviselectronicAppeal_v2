@@ -82,7 +82,7 @@ const TabLegalEntityAppeal = observer(() => {
                     />
                 </Row>
                 <Form.Control
-                    placeholder='Адрес (адрес места жительства (места пребывания))'
+                    placeholder='Адрес (адрес организации (места регистрации))'
                     className='mt-3'
                     value={home_address? home_address : ''}
                     onChange={e => setHome_address(e.target.value)}
