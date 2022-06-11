@@ -1,4 +1,4 @@
-const {AnonymousAppeal, OrganizationAddress, DepartmentOfAppeal} = require('../models/models')
+const {AnonymousAppeal, OrganizationAddress, DepartmentOfAppeal, ElectronicAppeal} = require('../models/models')
 const ApiError = require('../error/ApiError');
 const path = require('path')
 const uuid = require('uuid')
@@ -28,17 +28,32 @@ class anonymousAppealController {
             let offset = page * limit - limit;
             console.log(organizationAddressId);
             let appeals;
-            if (!organizationAddressId && !departmentAppealId){
-                appeals = await AnonymousAppeal.findAndCountAll({where: {status}, limit, offset, include: {all: true}})
+            if (!organizationAddressId && !departmentAppealId && !status){
+                appeals = await AnonymousAppeal.findAndCountAll({ limit ,offset, include: {all: true}})
             }
-            if (organizationAddressId && !departmentAppealId){
-                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,status}, limit, offset,include: {all: true}})
+            if (organizationAddressId && departmentAppealId && status){
+                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId,status}, limit ,offset, include: {all: true}})
             }
-            if (!organizationAddressId && departmentAppealId ){
-                appeals = await AnonymousAppeal.findAndCountAll({where: {departmentAppealId, status}, limit, offset,include: {all: true}})
+            /////
+            if (organizationAddressId && !departmentAppealId && !status){
+                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId}, limit ,offset, include: {all: true}})
             }
-            if (organizationAddressId && departmentAppealId ){
-                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId,status}, limit, offset,include: {all: true}})
+            if (!organizationAddressId && departmentAppealId && !status){
+                appeals = await AnonymousAppeal.findAndCountAll({where: {departmentAppealId}, limit ,offset, include: {all: true}})
+            }
+            if (!organizationAddressId && !departmentAppealId && status){
+                appeals = await AnonymousAppeal.findAndCountAll({where: {status}, limit ,offset, include: {all: true}})
+            }
+
+            //
+            if (!organizationAddressId && departmentAppealId && status){
+                appeals = await AnonymousAppeal.findAndCountAll({where: {departmentAppealId, status}, limit ,offset, include: {all: true}})
+            }
+            if (organizationAddressId && !departmentAppealId && status){
+                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,status}, limit ,offset, include: {all: true}})
+            }
+            if (organizationAddressId && departmentAppealId && !status ){
+                appeals = await AnonymousAppeal.findAndCountAll({where: {organizationAddressId,departmentAppealId}, limit ,offset, include: {all: true}})
             }
             return res.json(appeals)
         } catch (error) {
